@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button/Button";
 import { LowerHeader, MainHeader, UpperHeader } from "./styles";
 
 function Header() {
@@ -6,6 +7,7 @@ function Header() {
     <header>
       <UpperHeader />
       <MainHeader>
+        <Button />
         <img src="../../../public/capi-logo.svg" alt="" />
       </MainHeader>
       <LowerHeader />

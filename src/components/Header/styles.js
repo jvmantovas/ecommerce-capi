@@ -12,7 +12,7 @@ export const MainHeader = styled.div`
   border: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const LowerHeader = styled.div`
