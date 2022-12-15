@@ -6,6 +6,8 @@ import {
   Card,
   CardsWrapper,
   Cover,
+  Footer,
+  FooterInfo,
   Main,
   MainGenre,
   OldPrice,
@@ -312,6 +314,8 @@ function Hero() {
               </Form>
             </SearchContainer>
           </Subscribe>
+          <FooterInfo></FooterInfo>
+          <Footer>João Mantovaneli © 2022</Footer>
         </Main>
       </footer>
     </>

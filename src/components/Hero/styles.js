@@ -174,3 +174,24 @@ export const SubButton = styled.button`
   align-items: center;
   justify-content: center;
 `;
+
+export const FooterInfo = styled.div`
+  height: 350px;
+  width: 100%;
+`;
+
+export const Footer = styled.div`
+  height: 75px;
+  width: 100%;
+  background-color: #ce2237;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f6d53b;
+  font-family: "HarmoniaSansW01-Semibold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+`;
