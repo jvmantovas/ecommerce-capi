@@ -15,6 +15,10 @@ export const Input = styled.input`
   padding: 10px;
   border-radius: 20px;
   border: none;
+  &:focus {
+    border: 0;
+    outline: 0;
+  }
 `;
 
 export const Submit = styled.button`
