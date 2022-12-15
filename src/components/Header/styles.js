@@ -36,10 +36,6 @@ export const Menu = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 10px;
-  font-weight: 500;
-  @font-face {
-    font-family: "HarmoniaSans";
-    src: url("Harmonia-Sans-W01-Regular.ttf");
-  }
-  font-family: HarmoniaSans, sans-serif;
+  font-family: "HarmoniaSansW01-Regular", sans-serif;
+  font-weight: 400;
 `;
