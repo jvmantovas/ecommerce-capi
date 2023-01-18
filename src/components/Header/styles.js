@@ -38,4 +38,8 @@ export const Menu = styled.div`
   padding: 10px;
   font-family: "HarmoniaSansW01-Regular", sans-serif;
   font-weight: 400;
+  p:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;
