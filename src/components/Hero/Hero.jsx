@@ -1,13 +1,9 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
-import { Input, Form, SearchContainer, Submit } from "../Button/styles";
 import {
   AlbumTitle,
   Card,
   CardsWrapper,
   Cover,
-  Footer,
-  FooterInfo,
   Main,
   MainGenre,
   OldPrice,
@@ -15,9 +11,7 @@ import {
   PriceWrapper,
   RecordType,
   SeeMore,
-  SubButton,
   SubGenre,
-  Subscribe,
   Title,
 } from "./styles";
 
