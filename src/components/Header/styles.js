@@ -43,3 +43,10 @@ export const Menu = styled.div`
     text-decoration: underline;
   }
 `;
+
+export const Hr = styled.hr`
+  color: #6b6b6b;
+  height: 0.8px;
+  background-color: #6b6b6b;
+  border: 0;
+`;
