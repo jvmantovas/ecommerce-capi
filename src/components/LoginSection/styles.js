@@ -30,7 +30,6 @@ export const LoginTitle = styled.h1`
   font-family: "HarmoniaSansW01-Semibold", sans-serif;
   font-size: 50px;
   line-height: 20px;
-  /* padding-bottom: 5rem; */
   position: absolute;
   top: 200px;
 `;
