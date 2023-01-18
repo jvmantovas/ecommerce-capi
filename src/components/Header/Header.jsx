@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import { LowerHeader, MainHeader, Menu, UpperHeader } from "./styles";
 
-function Header() {
+const Header = () => {
   return (
     <header>
       <UpperHeader />
@@ -26,6 +26,6 @@ function Header() {
       </LowerHeader>
     </header>
   );
-}
+};
 
-export default Header;
+export { Header };

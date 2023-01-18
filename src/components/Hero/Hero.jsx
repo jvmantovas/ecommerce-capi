@@ -21,7 +21,7 @@ import {
   Title,
 } from "./styles";
 
-function Hero() {
+const Hero = () => {
   return (
     <>
       <main>
@@ -320,6 +320,6 @@ function Hero() {
       </footer>
     </>
   );
-}
+};
 
-export default Hero;
+export { Hero };
