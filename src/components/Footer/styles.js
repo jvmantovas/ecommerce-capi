@@ -35,7 +35,7 @@ export const SubButton = styled.button`
   border-radius: 20px;
   border: none;
   font-family: "towerfont", sans-serif;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: 1px;
   height: 100%;
