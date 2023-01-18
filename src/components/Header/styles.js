@@ -2,18 +2,21 @@ import styled from "styled-components";
 
 export const UpperHeader = styled.div`
   top: 0;
+  /* position: fixed; */
   height: 32px;
   background-color: #f6d53b;
+  transition: top 0.6s;
 `;
 
 export const MainHeader = styled.div`
   height: 72px;
+  width: 100%;
   background-color: #f6d53b;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 3;
-  position: relative;
+  /* position: relative; */
   padding: 0 2rem;
   .right-side img {
     padding: 10px;
