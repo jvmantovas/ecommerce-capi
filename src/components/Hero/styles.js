@@ -44,6 +44,7 @@ export const CardsWrapper = styled.div`
   margin-right: 1rem;
   grid-template-columns: 250px 250px 250px 250px 250px 250px;
   gap: 1rem;
+  overflow-y: hidden;
 `;
 
 export const Card = styled.div`
@@ -68,18 +69,19 @@ export const AlbumTitle = styled.h2`
   font-family: "HarmoniaSansW01-Regular";
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #000000;
   text-align: left;
+  padding-top: 0.25rem;
 `;
 
 export const MainGenre = styled.p`
   font-family: "HarmoniaSansW01-Regular";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #444444;
@@ -90,7 +92,7 @@ export const SubGenre = styled.p`
   font-family: "HarmoniaSansW01-Regular";
   font-style: normal;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #444444;
@@ -123,6 +125,7 @@ export const OldPrice = styled.p`
   text-decoration-line: line-through;
   color: #6b6b6b;
   text-align: right;
+  margin-top: -10px;
 `;
 
 export const Price = styled.p`
