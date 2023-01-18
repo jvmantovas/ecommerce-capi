@@ -296,28 +296,6 @@ const Hero = () => {
           </CardsWrapper>
         </Main>
       </main>
-      <footer>
-        <Main style={{ backgroundColor: "#f6d53b" }}>
-          <Subscribe>
-            <p>Inscreva-se para receber ofertas especiais e novidades</p>
-            <SearchContainer>
-              <Form action="">
-                <Input
-                  style={{ width: "350px" }}
-                  type="text"
-                  placeholder="E-mail..."
-                  name="search"
-                />
-                <Submit type="submit">
-                  <SubButton>Inscrever-se</SubButton>
-                </Submit>
-              </Form>
-            </SearchContainer>
-          </Subscribe>
-          <FooterInfo></FooterInfo>
-          <Footer>João Mantovaneli © 2022</Footer>
-        </Main>
-      </footer>
     </>
   );
 };
