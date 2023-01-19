@@ -62,7 +62,7 @@ export const FieldInput = styled.input`
   padding: 10px;
   border: 1px solid black;
   flex: 1;
-  min-width: 70%;
+  min-width: 100%;
   max-width: 100%;
   &:focus {
     outline: 0;
