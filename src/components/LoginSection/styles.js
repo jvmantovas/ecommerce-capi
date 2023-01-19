@@ -5,6 +5,7 @@ export const MainWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-evenly;
 `;
 
@@ -12,9 +13,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
   padding: 2rem;
   width: 50%;
+  align-self: flex-start;
+  margin-top: 3rem;
+  margin-left: 3rem;
 `;
 
 export const Line = styled.hr`
@@ -30,8 +35,8 @@ export const LoginTitle = styled.h1`
   font-family: "HarmoniaSansW01-Semibold", sans-serif;
   font-size: 50px;
   line-height: 20px;
-  position: absolute;
-  top: 200px;
+  align-self: flex-start;
+  margin-bottom: 1rem;
 `;
 
 export const FieldName = styled.p`
@@ -41,7 +46,11 @@ export const FieldName = styled.p`
   line-height: 20px;
   letter-spacing: 0.4px;
   color: #000000;
-  padding-top: 2rem;
+  margin-right: 10px;
+  margin-top: 0;
+  align-self: flex-start;
+  width: 30%;
+  margin-top: 1rem;
 `;
 
 export const Form = styled.form``;
@@ -52,7 +61,9 @@ export const FieldInput = styled.input`
   font-size: 18px;
   padding: 10px;
   border: 1px solid black;
-  max-width: 700px;
+  flex: 1;
+  min-width: 70%;
+  max-width: 100%;
   &:focus {
     outline: 0;
   }
