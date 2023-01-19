@@ -2,10 +2,15 @@ import styled from "styled-components";
 
 export const UpperHeader = styled.div`
   top: 0;
-  /* position: fixed; */
   height: 32px;
   background-color: #f6d53b;
-  transition: top 0.6s;
+  ${({ hidden }) =>
+    hidden &&
+    `
+    display: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  `}
 `;
 
 export const MainHeader = styled.div`
@@ -16,8 +21,9 @@ export const MainHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   z-index: 3;
-  /* position: relative; */
   padding: 0 2rem;
+  position: ${({ sticky }) => (sticky ? "fixed" : "relative")};
+  top: ${({ sticky }) => (sticky ? "0" : "auto")};
   .right-side img {
     padding: 10px;
   }
@@ -31,6 +37,13 @@ export const LowerHeader = styled.div`
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
   z-index: 2;
   position: relative;
+  ${({ hidden }) =>
+    hidden &&
+    `
+    display: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  `}
 `;
 
 export const Menu = styled.div`
