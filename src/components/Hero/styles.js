@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   width: 100%;
+  overflow: hidden;
   height: 500px;
   z-index: 1;
 `;
