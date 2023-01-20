@@ -26,7 +26,7 @@ export const Subscribe = styled.div`
   }
 `;
 
-export const SubButton = styled.button`
+export const SubButton = styled.div`
   background: #f6d53b;
   border-radius: 10px;
   color: #000000;
