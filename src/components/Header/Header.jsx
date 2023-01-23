@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { Hr, LowerHeader, MainHeader, Menu, UpperHeader } from "./styles";
+import {
+  DropDown,
+  Hr,
+  LowerHeader,
+  MainHeader,
+  Menu,
+  UpperHeader,
+} from "./styles";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showUpperHeader, setShowUpperHeader] = useState(true);
   const [showLowerHeader, setShowLowerHeader] = useState(true);
@@ -27,6 +35,17 @@ const Header = () => {
     };
   }, []);
 
+  const genres = [
+    "Pop",
+    "Rock",
+    "Jazz",
+    "Blues",
+    "Country",
+    "Classical",
+    "Rap",
+    "Reggae",
+  ];
+
   return (
     <header>
       <UpperHeader hidden={!showUpperHeader} />
@@ -42,7 +61,29 @@ const Header = () => {
       <Hr />
       <LowerHeader hidden={!showLowerHeader}>
         <Menu>
-          <p>GÊNEROS</p>
+          <p
+            onClick={() => setIsMenuOpen(true)}
+            onMouseEnter={() => setIsMenuOpen(true)}
+          >
+            GÊNEROS
+            {isMenuOpen && (
+              <DropDown
+                onMouseEnter={() => setIsMenuOpen(true)}
+                onMouseLeave={() => setIsMenuOpen(false)}
+              >
+                <div className="dropdown-menu-col">
+                  {genres.slice(0, 4).map((genre) => (
+                    <p>{genre}</p>
+                  ))}
+                </div>
+                <div className="dropdown-menu-col">
+                  {genres.slice(4).map((genre) => (
+                    <p>{genre}</p>
+                  ))}
+                </div>
+              </DropDown>
+            )}
+          </p>
           <p>PROMOÇÃO</p>
           <p>ENTREGAS</p>
           <p>SOBRE</p>

@@ -60,6 +60,36 @@ export const Menu = styled.div`
   }
 `;
 
+export const DropDown = styled.div`
+  display: flex;
+  position: absolute;
+  top: 46px;
+  /* left: 0; */
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 250px;
+  background-color: #f6d53b;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: "HarmoniaSansW01-Regular", sans-serif;
+  font-weight: 400;
+  .dropdown-menu-col {
+    width: 50%;
+    padding: 10px;
+    margin: 0;
+    text-align: left !important;
+    p {
+      color: #444;
+      font-size: 18px;
+      text-transform: uppercase;
+      margin: 0;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
+
 export const Hr = styled.hr`
   color: #6b6b6b;
   height: 0.8px;
