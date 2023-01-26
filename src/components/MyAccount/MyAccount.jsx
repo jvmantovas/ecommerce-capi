@@ -28,7 +28,7 @@ const MyAccount = () => {
           <CartPreview>
             <p>Exemplo x 2</p>
 
-            <CartButton onClick={""}>Ver Carrinho</CartButton>
+            <CartButton>Ver Carrinho</CartButton>
           </CartPreview>
         </div>
         <OrderHistoryWrapper>
