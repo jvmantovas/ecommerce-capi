@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Main } from "../Hero/styles";
 import {
   ActionButton,
@@ -22,13 +23,27 @@ const LoginSection = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
+
+    if (!Object.values(data).every((val) => val.trim() !== "")) {
+      setSuccessMsg(false);
+      setErrMsg("Preencha todos os campos!");
+      return;
+    }
+
     const sendData = {
       name: data.name,
       email: data.email,
       password: data.password,
     };
+    console.log(sendData);
+    axios
+      .post("http://localhost/ecommerce-capi/insert.php")
+      .then((res) => console.log(res.data))
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   return (
@@ -65,9 +80,14 @@ const LoginSection = () => {
               type="password"
               name="password"
               onChange={handleChange}
-              value={data.value}
+              value={data.password}
             />
-            <ActionButton type="submit" name="submit" value="Register">
+            <ActionButton
+              type="submit"
+              name="submit"
+              value="Register"
+              onClick={submitForm}
+            >
               Cadastrar
             </ActionButton>
           </form>
