@@ -48,6 +48,31 @@ export const SubButton = styled.div`
 export const FooterInfo = styled.div`
   height: 350px;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3rem 3rem;
+  div {
+    padding: 2rem;
+    .social-icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: -2rem;
+    }
+    h2 {
+      font-family: "HarmoniaSansW01-Semibold", sans-serif;
+      padding-bottom: 1rem;
+    }
+    p,
+    li {
+      font-family: "HarmoniaSansMonoW01-Regular", sans-serif;
+      padding: 0.2rem;
+    }
+  }
+  ul {
+    list-style: none;
+  }
 `;
 
 export const FooterCopy = styled.div`

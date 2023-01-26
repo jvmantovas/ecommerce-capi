@@ -20,6 +20,10 @@ export const Container = styled.div`
   align-self: flex-start;
   margin-top: 3rem;
   margin-left: 3rem;
+  form {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const Line = styled.hr`
@@ -36,7 +40,7 @@ export const LoginTitle = styled.h1`
   font-size: 50px;
   line-height: 20px;
   align-self: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `;
 
 export const FieldName = styled.p`
