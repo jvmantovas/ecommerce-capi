@@ -12,6 +12,7 @@ import {
   MainWrapper,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginSection = () => {
   let navigate = useNavigate();
@@ -21,6 +22,7 @@ const LoginSection = () => {
     email: "",
     password: "",
   });
+
   const [user, setUser] = useState({ email: "", password: "" });
 
   const handleLogin = (e) => {
@@ -40,12 +42,22 @@ const LoginSection = () => {
       password: data.password,
     };
     console.log(sendData);
+
     axios
       .post("http://localhost/ecommerce-capi/insert.php", sendData)
-      .then((res) => console.log(res.data))
-      .catch((error) => {
-        console.log(error.response);
-      });
+      .then((result) => {
+        if (result.status === 200) {
+          toast.success("Usuário cadastrado com sucesso!");
+          setData({
+            name: "",
+            email: "",
+            password: "",
+          });
+        } else {
+          toast.error("E-mail já está cadastrado!");
+        }
+      })
+      .catch((error) => toast.error(error));
   };
 
   const loginForm = async (e) => {
@@ -62,11 +74,11 @@ const LoginSection = () => {
       .post("http://localhost/ecommerce-capi/login.php", userData)
       .then((result) => {
         if (result.status === 200) {
-          window.localStorage.setItem("email", result.data.email);
-          window.localStorage.setItem("userName", result.data.Nome);
+          window.localStorage.setItem("email", user.email);
+          window.localStorage.setItem("userName", data.name);
           navigate(`/account`);
         } else {
-          alert("Usuário inválido!");
+          toast.error("Usuário inválido!");
         }
       });
   };
