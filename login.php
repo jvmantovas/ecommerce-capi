@@ -14,7 +14,6 @@ if(isset($postdata) && !empty($postdata)) {
     $email = $request->email;
     $password = $request->password;
     
-
     $sql = ("SELECT * from users where email = '$email' and password = '$password'");
     $result = mysqli_query($db, $sql);
 
