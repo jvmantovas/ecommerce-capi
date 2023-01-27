@@ -11,11 +11,20 @@ if(isset($postdata) && !empty($postdata)) {
     $name = $request->name;
     $email = $request->email;
     $password = $request->password;
+
+    $sql_e = "SELECT * FROM users WHERE email='$email'";
+
     $sql = "INSERT INTO users (name, email, password) VALUES('$name', '$email', '$password')";
-    if(mysqli_query($db, $sql)) {
-        http_response_code(201);
+
+    $res_e = mysqli_query($db, $sql_e);
+
+    if(mysqli_num_rows($res_e) > 0) {
+        http_response_code(202);
     } else {
-        http_response_code(422);
-    }
+        if(mysqli_query($db, $sql)) {
+        http_response_code(200);
+    } else {
+        http_response_code(202);
+    }}
 }
 ?>
