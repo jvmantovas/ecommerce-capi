@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Main } from "../Hero/styles";
 import {
@@ -25,6 +25,14 @@ const LoginSection = () => {
 
   const [user, setUser] = useState({ email: "", password: "" });
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate(`/account`);
+    }
+  }, [navigate]);
+
   const handleLogin = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -35,52 +43,62 @@ const LoginSection = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    try {
+      const sendData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      };
+      console.log(sendData);
 
-    const sendData = {
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    };
-    console.log(sendData);
+      const response = await axios.post(
+        "http://localhost/ecommerce-capi/insert.php",
+        sendData
+      );
 
-    axios
-      .post("http://localhost/ecommerce-capi/insert.php", sendData)
-      .then((result) => {
-        if (result.status === 200) {
-          toast.success("Usuário cadastrado com sucesso!");
-          setData({
-            name: "",
-            email: "",
-            password: "",
-          });
-        } else {
-          toast.error("E-mail já está cadastrado!");
-        }
-      })
-      .catch((error) => toast.error(error));
+      if (response.status === 200) {
+        toast.success("Usuário cadastrado com sucesso!");
+        setData({
+          name: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        toast.error("E-mail já está cadastrado!");
+      }
+    } catch (error) {
+      toast.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const loginForm = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    const userData = {
-      email: user.email,
-      password: user.password,
-    };
-
-    console.log(userData);
-
-    axios
-      .post("http://localhost/ecommerce-capi/login.php", userData)
-      .then((result) => {
-        if (result.status === 200) {
-          window.localStorage.setItem("email", user.email);
-          window.localStorage.setItem("userName", data.name);
-          navigate(`/account`);
-        } else {
-          toast.error("Usuário inválido!");
-        }
-      });
+    try {
+      const userData = {
+        email: user.email,
+        password: user.password,
+      };
+      const response = await axios.post(
+        "http://localhost/ecommerce-capi/login.php",
+        userData
+      );
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userName", data.name);
+        navigate(`/account`);
+      } else {
+        toast.error("Usuário inválido!");
+      }
+    } catch (error) {
+      toast.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
