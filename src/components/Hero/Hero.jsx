@@ -1,29 +1,48 @@
-import React from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import {
   AlbumTitle,
   Card,
   CardsWrapper,
   Cover,
+  LeftArrowDiv,
   Main,
   MainGenre,
   OldPrice,
   Price,
   PriceWrapper,
   RecordType,
+  RightArrowDiv,
   SeeMore,
   SubGenre,
   Title,
 } from "./styles";
 import { Product } from "../Product/Product";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { useRef } from "react";
 
 const Hero = () => {
-  axios
-    .get("http://localhost/ecommerce-capi/products.php")
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((error) => toast.error(error));
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const handleScroll = (e) => {
+    const { scrollWidth, clientWidth, scrollLeft } = e.target;
+    setScrollLeft(scrollLeft);
+    setShowLeftArrow(scrollLeft > 0);
+    setShowRightArrow(scrollWidth > clientWidth + scrollLeft);
+  };
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const cardsWrapperRef = useRef(null);
+
+  const handleLeftArrowClick = () => {
+    setScrollPosition(scrollPosition - 100);
+    cardsWrapperRef.current.scrollLeft -= 200;
+  };
+
+  const handleRightArrowClick = () => {
+    setScrollPosition(scrollPosition + 100);
+    cardsWrapperRef.current.scrollLeft += 200;
+  };
 
   return (
     <>
@@ -31,7 +50,18 @@ const Hero = () => {
         <Main style={{ backgroundColor: "#f6d53b" }}>
           <Title style={{ color: "#ce2237" }}>DESCONTOS</Title>
           <SeeMore>Ver todos</SeeMore>
-          <CardsWrapper>
+          <CardsWrapper
+            onScroll={handleScroll}
+            scrollLeft={scrollLeft}
+            ref={cardsWrapperRef}
+          >
+            <LeftArrowDiv
+              onClick={handleLeftArrowClick}
+              // onClick={() => setScrollLeft(scrollLeft - 300)}
+              show={showLeftArrow}
+            >
+              <SlArrowLeft size={45} style={{ color: "#444444" }} />
+            </LeftArrowDiv>
             <Product />
             <Card>
               <Cover
@@ -103,6 +133,14 @@ const Hero = () => {
                 <Price>R$130,00</Price>
               </PriceWrapper>
             </Card>
+            <RightArrowDiv
+              // onClick={() => setScrollLeft(scrollLeft + 300)}
+              show={showRightArrow}
+              onClick={handleRightArrowClick}
+              style={{ color: "#444444" }}
+            >
+              <SlArrowRight size={45} />
+            </RightArrowDiv>
           </CardsWrapper>
         </Main>
         <Main style={{ backgroundColor: "#CE2237" }}>

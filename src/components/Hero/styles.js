@@ -34,21 +34,78 @@ export const SeeMore = styled.a`
 `;
 
 export const CardsWrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 400px;
   text-align: center;
-  box-sizing: border-box;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 2rem;
-  margin-right: 1rem;
-  grid-template-columns: 250px 250px 250px 250px 250px 250px;
+  /* margin-right: 1rem; */
+  /* position: absolute; */
+  /* grid-template-columns: repeat(6, 250px); */
   gap: 1rem;
   overflow-y: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+`;
+
+export const LeftArrowDiv = styled.div`
+  display: ${({ show }) => (show ? "flex" : "none")};
+  position: absolute;
+  top: 50%;
+  left: 0;
+  /* transform: translateY(-50%); */
+  z-index: 10;
+  cursor: pointer;
+  background-color: #f6d43b7a;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  align-items: center;
+  justify-content: flex-start;
+  &:hover {
+    background-color: #f6d43bb7;
+  }
+`;
+
+export const RightArrowDiv = styled.div`
+  display: ${({ show }) => (show ? "flex" : "none")};
+  position: absolute;
+  top: 50%;
+  right: 0;
+  /* transform: translateY(-50%); */
+  z-index: 10;
+  cursor: pointer;
+  background-color: #f6d43b7a;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  align-items: center;
+  justify-content: flex-end;
+  &:hover {
+    background-color: #f6d43bb7;
+  }
 `;
 
 export const Card = styled.div`
+  flex-shrink: 0;
   box-sizing: border-box;
   height: 350px;
   width: 250px;
