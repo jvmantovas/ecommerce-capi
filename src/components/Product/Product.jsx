@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AlbumTitle,
   Card,
@@ -11,50 +11,41 @@ import {
   PriceWrapper,
   RecordType,
   SubGenre,
-} from "../Hero/styles";
+} from "./styles";
 
 const Product = () => {
-  const [products, setProducts] = useState({
-    id: "",
-    artist: "",
-    title: "",
-    firstGenre: "",
-    secondGenre: "",
-    fistSubgenre: "",
-    secondSubgenre: "",
-    price: "",
-    oldPrice: "",
-    type: "",
-    image: "",
-  });
-
   const [productsData, setProductsData] = useState([]);
 
-  //   const fetchData = async () => {
-  let data = [{}];
-  async function status() {
-    const response = await axios.get(
-      "http://localhost/ecommerce-capi/products.php"
-    );
-    // .then((res) => console.log(res.data));
-    data = response.data;
-    await status();
-  }
-  console.log(data);
-  //   fetchData();
+  useEffect(() => {
+    async function getData() {
+      const response = await axios.get(
+        "http://localhost/ecommerce-capi/products.php"
+      );
+      setProductsData(response.data);
+    }
+    getData();
+  }, []);
+
+  console.log(productsData);
 
   return (
     <>
-      {data.map(({ image }) => (
-        <Card>
-          <Cover src={image} alt="" />
-          <AlbumTitle>Jorge Ben - Jorge Ben</AlbumTitle>
-          <MainGenre>Jazz, Brasil</MainGenre>
-          <SubGenre>Bossanova, MPB</SubGenre>
-          <OldPrice>R$159,00</OldPrice>
+      {productsData.map((product) => (
+        <Card key={product.id}>
+          <Cover src={product.image} alt="" />
+          <AlbumTitle>
+            {product.artist} - {product.title}
+          </AlbumTitle>
+          <MainGenre>
+            {product.first_genre}, {product.second_genre}
+          </MainGenre>
+          <SubGenre>
+            {product.first_subgenre}, {product.second_genre}
+          </SubGenre>
+          <OldPrice>R${product.old_price}</OldPrice>
           <PriceWrapper>
-            <RecordType>VINIL - LP</RecordType>
-            <Price>R$130,00</Price>
+            <RecordType>{product.type}</RecordType>
+            <Price>R${product.price}</Price>
           </PriceWrapper>
         </Card>
       ))}
