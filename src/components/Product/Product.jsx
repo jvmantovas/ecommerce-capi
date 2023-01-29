@@ -40,9 +40,11 @@ const Product = () => {
             {product.first_genre}, {product.second_genre}
           </MainGenre>
           <SubGenre>
-            {product.first_subgenre}, {product.second_genre}
+            {product.first_subgenre}, {product.second_subgenre}
           </SubGenre>
-          <OldPrice>R${product.old_price}</OldPrice>
+          {product.old_price !== "0.00" && (
+            <OldPrice>R${product.old_price}</OldPrice>
+          )}
           <PriceWrapper>
             <RecordType>{product.type}</RecordType>
             <Price>R${product.price}</Price>
