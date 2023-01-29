@@ -9,6 +9,7 @@ export const Card = styled.div`
   padding: 1rem 1.5rem;
   background: #f6d53b;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 export const Cover = styled.img`
@@ -56,6 +57,9 @@ export const PriceWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: absolute;
+  bottom: 0.5rem;
+  width: 80%;
 `;
 
 export const RecordType = styled.p`
@@ -78,7 +82,9 @@ export const OldPrice = styled.p`
   text-decoration-line: line-through;
   color: #6b6b6b;
   text-align: right;
-  margin-top: -10px;
+  width: 80%;
+  position: absolute;
+  bottom: 1.5rem;
 `;
 
 export const Price = styled.p`
