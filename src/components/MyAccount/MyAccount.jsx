@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Main } from "../Hero/styles";
 import {
   AccountWrapper,
@@ -12,15 +13,23 @@ import {
 
 const MyAccount = () => {
   const [showOrderHistory, setShowOrderHistory] = useState(false);
+  let navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    navigate(`/login`);
+  };
 
   return (
     <Main style={{ backgroundColor: "#f6d53b" }}>
       <AccountWrapper>
         <h2>Minha Conta</h2>
+        <CartButton onClick={handleLogout}>Logout</CartButton>
         <UserInfo>
           <h3>Informações do Usuário</h3>
-          <p>Nome: Exemplo</p>
-          <p>Email: Exemplo</p>
+          <p>Nome: {localStorage.getItem("userName")}</p>
+          <p>Email: {localStorage.getItem("userEmail")}</p>
           <p>Endereço: Exemplo</p>
         </UserInfo>
         <div>
