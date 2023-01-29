@@ -13,17 +13,31 @@ if(isset($postdata) && !empty($postdata)) {
     $email = $request->email;
     $password = $request->password;
     
-    $sql = ("SELECT * from users where email = '$email' and password = '$password'");
-    $result = mysqli_query($db, $sql);
+    $stmt = mysqli_prepare($db, "SELECT * from users where email = ? and password = ?");
+    mysqli_stmt_bind_param($stmt, 'ss', $email, $password);
+    mysqli_stmt_execute($stmt);
 
+    $result = mysqli_stmt_get_result($stmt);
     $nums = mysqli_num_rows($result);
     $rs = mysqli_fetch_array($result);
 
     if($nums != 0) {
         http_response_code(200);
+         $data = [
+            "status" => "success",
+            "user" => [
+                "name" => $rs['name'],
+                "email" => $rs['email']
+            ]
+        ];
+        echo json_encode($data);
 
     } else {
-        http_response_code(202);
+        http_response_code(401);
+        $data = [
+            "status" => "failure",
+            "message" => "Invalid email or password"
+        ];
     }
 }
 ?>
