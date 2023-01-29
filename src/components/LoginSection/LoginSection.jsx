@@ -28,7 +28,7 @@ const LoginSection = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("userName")) {
       navigate(`/account`);
     }
   }, [navigate]);
@@ -88,14 +88,14 @@ const LoginSection = () => {
         userData
       );
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userName", data.name);
+        localStorage.setItem("userName", response.data.user.name);
+        localStorage.setItem("userEmail", response.data.user.email);
         navigate(`/account`);
       } else {
-        toast.error("Usuário inválido!");
+        toast.error("E-mail ou password inválido!");
       }
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
