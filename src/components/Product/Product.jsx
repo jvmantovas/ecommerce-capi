@@ -13,7 +13,7 @@ import {
   SubGenre,
 } from "./styles";
 
-const Product = () => {
+const Product = ({ selectedGenre }) => {
   const [productsData, setProductsData] = useState([]);
 
   useEffect(() => {
@@ -27,6 +27,15 @@ const Product = () => {
   }, []);
 
   console.log(productsData);
+
+  let filteredData = productsData;
+  if (selectedGenre) {
+    filteredData = productsData.filter(
+      (product) =>
+        product.first_genre === selectedGenre ||
+        product.second_genre === selectedGenre
+    );
+  }
 
   return (
     <>

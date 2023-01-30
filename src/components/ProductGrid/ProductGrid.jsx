@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Filters } from "../Filters/Filters";
 import { Product } from "../Product/Product";
+import { GridView, ProductsWrapper } from "./styles";
 import axios from "axios";
 
 const ProductGrid = () => {
   const [productsData, setProductsData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState("");
+
+  const handleFilterChange = (selectedGenre) => {
+    setSelectedGenre(selectedGenre);
+  };
 
   useEffect(() => {
     async function getData() {
@@ -12,35 +18,28 @@ const ProductGrid = () => {
         "http://localhost/ecommerce-capi/products.php"
       );
       setProductsData(response.data);
-      setFilteredData(response.data);
     }
     getData();
   }, []);
 
-  const handleFilter = (event) => {
-    const filtered = productsData.filter(
-      (product) => product.first_genre === event.target.value
-    );
-    setFilteredData(filtered);
-  };
+  const filteredProductsData =
+    selectedGenre === ""
+      ? productsData
+      : productsData.filter((product) => product.genre === selectedGenre);
 
   return (
-    <div>
-      <div>
-        <select onChange={handleFilter}>
-          <option value="">All</option>
-          <option value="Rock">Rock</option>
-          <option value="Pop">Pop</option>
-          <option value="Jazz">Jazz</option>
-          <option value="Blues">Blues</option>
-        </select>
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
-        {filteredData.map((product) => (
-          <Product key={product.id} product={product} />
+    <ProductsWrapper>
+      <Filters onFilterChange={handleFilterChange} />
+      <GridView>
+        {filteredProductsData.map((product) => (
+          <Product
+            key={product.id}
+            product={product}
+            selectedGenre={selectedGenre}
+          />
         ))}
-      </div>
-    </div>
+      </GridView>
+    </ProductsWrapper>
   );
 };
 
