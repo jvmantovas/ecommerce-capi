@@ -55,17 +55,22 @@ const Header = () => {
       <Hr />
       <MainHeader sticky={!showUpperHeader && !showLowerHeader}>
         <Button />
-        <img src="../../../public/capi-logo.svg" alt="" />
-
+        <Link to={`/`} style={{ textDecoration: "none" }}>
+          <img src="../../../public/capi-logo.svg" alt="" />
+        </Link>
         <RightButtons>
-          <AccountWrapper>
-            <img src="../../../public/assets/acc-vector.svg" alt="" />
-            <h2>CONTA</h2>
-          </AccountWrapper>
-          <CartWrapper>
-            <img src="../../../public/assets/cart-vector.svg" alt="" />
-            <h2>CARRINHO</h2>
-          </CartWrapper>
+          <Link to={`/account`} style={{ textDecoration: "none" }}>
+            <AccountWrapper>
+              <img src="../../../public/assets/acc-vector.svg" alt="" />
+              <h2>CONTA</h2>
+            </AccountWrapper>
+          </Link>
+          <Link to={`/cart`} style={{ textDecoration: "none" }}>
+            <CartWrapper>
+              <img src="../../../public/assets/cart-vector.svg" alt="" />
+              <h2>CARRINHO</h2>
+            </CartWrapper>
+          </Link>
         </RightButtons>
       </MainHeader>
       <Hr />
