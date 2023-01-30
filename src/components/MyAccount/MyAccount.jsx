@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Main } from "../Hero/styles";
 import {
@@ -20,6 +20,12 @@ const MyAccount = () => {
     localStorage.removeItem("userEmail");
     navigate(`/login`);
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("userName")) {
+      navigate(`/login`);
+    }
+  }, []);
 
   return (
     <Main style={{ backgroundColor: "#f6d53b" }}>
