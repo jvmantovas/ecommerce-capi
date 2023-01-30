@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import {
+  AccountWrapper,
+  CartWrapper,
   DropDown,
   Hr,
   LowerHeader,
   MainHeader,
   Menu,
+  RightButtons,
   UpperHeader,
 } from "./styles";
 
@@ -53,10 +56,17 @@ const Header = () => {
       <MainHeader sticky={!showUpperHeader && !showLowerHeader}>
         <Button />
         <img src="../../../public/capi-logo.svg" alt="" />
-        <Link className="right-side" to="/">
-          <img src="../../../public/acc.svg" alt="" />
-          <img src="../../../public/cart.svg" alt="" />
-        </Link>
+
+        <RightButtons>
+          <AccountWrapper>
+            <img src="../../../public/assets/acc-vector.svg" alt="" />
+            <h2>CONTA</h2>
+          </AccountWrapper>
+          <CartWrapper>
+            <img src="../../../public/assets/cart-vector.svg" alt="" />
+            <h2>CARRINHO</h2>
+          </CartWrapper>
+        </RightButtons>
       </MainHeader>
       <Hr />
       <LowerHeader hidden={!showLowerHeader}>
