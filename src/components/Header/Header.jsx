@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import {
+  AccountWrapper,
+  CartWrapper,
   DropDown,
   Hr,
   LowerHeader,
   MainHeader,
   Menu,
+  RightButtons,
   UpperHeader,
 } from "./styles";
 
@@ -52,11 +55,23 @@ const Header = () => {
       <Hr />
       <MainHeader sticky={!showUpperHeader && !showLowerHeader}>
         <Button />
-        <img src="../../../public/capi-logo.svg" alt="" />
-        <Link className="right-side" to="/">
-          <img src="../../../public/acc.svg" alt="" />
-          <img src="../../../public/cart.svg" alt="" />
+        <Link to={`/`} style={{ textDecoration: "none" }}>
+          <img src="../../../public/capi-logo.svg" alt="" />
         </Link>
+        <RightButtons>
+          <Link to={`/account`} style={{ textDecoration: "none" }}>
+            <AccountWrapper>
+              <img src="../../../public/assets/acc-vector.svg" alt="" />
+              <h2>CONTA</h2>
+            </AccountWrapper>
+          </Link>
+          <Link to={`/cart`} style={{ textDecoration: "none" }}>
+            <CartWrapper>
+              <img src="../../../public/assets/cart-vector.svg" alt="" />
+              <h2>CARRINHO</h2>
+            </CartWrapper>
+          </Link>
+        </RightButtons>
       </MainHeader>
       <Hr />
       <LowerHeader hidden={!showLowerHeader}>

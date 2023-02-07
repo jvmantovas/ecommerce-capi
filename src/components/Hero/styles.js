@@ -42,9 +42,6 @@ export const CardsWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 2rem;
-  /* margin-right: 1rem; */
-  /* position: absolute; */
-  /* grid-template-columns: repeat(6, 250px); */
   gap: 1rem;
   overflow-y: hidden;
   overflow-x: scroll;
@@ -69,9 +66,7 @@ export const CardsWrapper = styled.div`
 export const LeftArrowDiv = styled.div`
   display: ${({ show }) => (show ? "flex" : "none")};
   position: absolute;
-  top: 50%;
   left: 0;
-  /* transform: translateY(-50%); */
   z-index: 10;
   cursor: pointer;
   background-color: #f6d43b7a;
@@ -79,6 +74,7 @@ export const LeftArrowDiv = styled.div`
   width: 55px;
   height: 55px;
   align-items: center;
+  align-self: center;
   justify-content: flex-start;
   &:hover {
     background-color: #f6d43bb7;
@@ -88,9 +84,7 @@ export const LeftArrowDiv = styled.div`
 export const RightArrowDiv = styled.div`
   display: ${({ show }) => (show ? "flex" : "none")};
   position: absolute;
-  top: 50%;
   right: 0;
-  /* transform: translateY(-50%); */
   z-index: 10;
   cursor: pointer;
   background-color: #f6d43b7a;

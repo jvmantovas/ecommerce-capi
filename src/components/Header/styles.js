@@ -29,6 +29,61 @@ export const MainHeader = styled.div`
   }
 `;
 
+export const RightButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  gap: 1rem;
+`;
+
+export const AccountWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  h2 {
+    font-family: "HarmoniaSansW01-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-left: 0.5rem;
+    color: #000000;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+export const CartWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  h2 {
+    font-family: "HarmoniaSansW01-Regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-left: 0.5rem;
+    color: #000000;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 export const LowerHeader = styled.div`
   height: 46px;
   background-color: #f6d53b;
