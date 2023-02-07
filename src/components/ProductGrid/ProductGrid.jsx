@@ -5,47 +5,51 @@ import { GridView, ProductsWrapper } from "./styles";
 import axios from "axios";
 
 const ProductGrid = () => {
-  const [productsData, setProductsData] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState("");
-
-  const handleFilterChange = (selectedGenre) => {
-    setSelectedGenre(selectedGenre);
-  };
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filter, setFilter] = useState({ genre: "", promoChecked: false });
 
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
         "http://localhost/ecommerce-capi/products.php"
       );
-      setProductsData(response.data);
+      setProducts(response.data);
     }
     getData();
   }, []);
 
-  const filteredProductsData =
-    selectedGenre === ""
-      ? productsData
-      : productsData.filter(
-          (product) =>
-            product.first_genre === selectedGenre ||
-            product.second_genre === selectedGenre ||
-            product.first_subgenre === selectedGenre ||
-            product.second_subgenre === selectedGenre
-        );
+  useEffect(() => {
+    let filteredProducts = products;
 
-  console.log(filteredProductsData);
+    if (filter.genre) {
+      filteredProducts = products.filter(
+        (product) =>
+          product.first_genre === filter.genre ||
+          product.second_genre === filter.genre ||
+          product.first_subgenre === filter.genre ||
+          product.second_subgenre === filter.genre
+      );
+    }
+
+    if (filter.promoChecked) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.old_price !== "0.00"
+      );
+    }
+
+    setFilteredProducts(filteredProducts);
+  }, [filter, products]);
+
+  const handleFilterChange = (newFilter) => {
+    setFilter({ ...filter, ...newFilter });
+  };
 
   return (
     <ProductsWrapper>
-      <Filters onFilterChange={handleFilterChange} />
+      <Filters handleFilterChange={handleFilterChange} />
       <GridView>
-        {filteredProductsData.map((product) => (
-          <Product
-          // key={product.id}
-          // product={product}
-          // selectedGenre={selectedGenre}
-          />
-        ))}
+        <Product products={filteredProducts} />
       </GridView>
     </ProductsWrapper>
   );

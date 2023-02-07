@@ -1,6 +1,4 @@
-import axios from "axios";
 import React from "react";
-import { useEffect, useState } from "react";
 import {
   AlbumTitle,
   Card,
@@ -13,34 +11,11 @@ import {
   SubGenre,
 } from "./styles";
 
-const Product = ({ selectedGenre }) => {
-  const [productsData, setProductsData] = useState([]);
-
-  useEffect(() => {
-    async function getData() {
-      const response = await axios.get(
-        "http://localhost/ecommerce-capi/products.php"
-      );
-      setProductsData(response.data);
-    }
-    getData();
-  }, []);
-
-  let filteredData = productsData;
-  if (selectedGenre) {
-    filteredData = productsData.filter(
-      (product) =>
-        product.first_genre === selectedGenre ||
-        product.second_genre === selectedGenre ||
-        product.first_subgenre === selectedGenre ||
-        product.second_subgenre === selectedGenre
-    );
-  }
-
+const Product = ({ products }) => {
   return (
     <>
-      {productsData.map((product) => (
-        <Card key={product.id}>
+      {products.map((product, index) => (
+        <Card key={product.id || index}>
           <Cover src={product.image} alt="" />
           <AlbumTitle>
             {product.artist} - {product.title}

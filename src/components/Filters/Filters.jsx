@@ -10,12 +10,21 @@ import {
   GenresList,
 } from "./styles";
 
-const Filters = ({ onFilterChange }) => {
-  const [selectedGenre, setSelectedGenre] = useState("");
+const Filters = ({ handleFilterChange }) => {
+  const [promoChecked, setPromoChecked] = useState(false);
 
   const handleGenreClick = (genre) => {
-    setSelectedGenre(genre);
-    onFilterChange(genre);
+    handleFilterChange({ genre });
+  };
+
+  const handlePromoClick = () => {
+    setPromoChecked((prev) => !prev);
+    handleFilterChange({ promoChecked: !promoChecked });
+  };
+
+  const handleClearClick = () => {
+    setPromoChecked(false);
+    handleFilterChange({ genre: "", promoChecked: false });
   };
 
   return (
@@ -23,15 +32,10 @@ const Filters = ({ onFilterChange }) => {
       <FilterSection>
         <FilterTitle>Gêneros</FilterTitle>
         <GenresList>
-          <GenreItem
-            type="checkbox"
-            onClick={() => handleGenreClick("Brasil")}
-            selected={selectedGenre === "Brasil"}
-            selectedGenre={selectedGenre}
-          >
+          <GenreItem type="checkbox" onClick={() => handleGenreClick("Brasil")}>
             Brasil
           </GenreItem>
-          <GenreItem>Rock</GenreItem>
+          <GenreItem onClick={() => handleGenreClick("Rock")}>Rock</GenreItem>
           <GenreItem>Reggae</GenreItem>
           <GenreItem>Electronic</GenreItem>
           <GenreItem>House</GenreItem>
@@ -43,9 +47,11 @@ const Filters = ({ onFilterChange }) => {
       </FilterSection>
       <FilterSection>
         <FilterTitle>Promoção</FilterTitle>
-        <FilterCheckbox type="checkbox" />
+        <FilterCheckbox type="checkbox" onClick={handlePromoClick} />
       </FilterSection>
-      <ClearFiltersButton>Limpar Filtros</ClearFiltersButton>
+      <ClearFiltersButton onClick={handleClearClick}>
+        Limpar Filtros
+      </ClearFiltersButton>
     </FiltersContainer>
   );
 };
