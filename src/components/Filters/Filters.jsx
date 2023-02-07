@@ -32,13 +32,20 @@ const Filters = ({ handleFilterChange }) => {
       <FilterSection>
         <FilterTitle>Gêneros</FilterTitle>
         <GenresList>
+          <GenreItem type="checkbox" onClick={() => handleGenreClick("")}>
+            Todos
+          </GenreItem>
           <GenreItem type="checkbox" onClick={() => handleGenreClick("Brasil")}>
             Brasil
           </GenreItem>
           <GenreItem onClick={() => handleGenreClick("Rock")}>Rock</GenreItem>
-          <GenreItem>Reggae</GenreItem>
-          <GenreItem>Electronic</GenreItem>
-          <GenreItem>House</GenreItem>
+          <GenreItem onClick={() => handleGenreClick("Reggae")}>
+            Reggae
+          </GenreItem>
+          <GenreItem onClick={() => handleGenreClick("Electronic")}>
+            Electronic
+          </GenreItem>
+          <GenreItem onClick={() => handleGenreClick("House")}>House</GenreItem>
         </GenresList>
       </FilterSection>
       <FilterSection>
