@@ -26,14 +26,14 @@ const Product = ({ selectedGenre }) => {
     getData();
   }, []);
 
-  // console.log(productsData);
-
   let filteredData = productsData;
   if (selectedGenre) {
     filteredData = productsData.filter(
       (product) =>
         product.first_genre === selectedGenre ||
-        product.second_genre === selectedGenre
+        product.second_genre === selectedGenre ||
+        product.first_subgenre === selectedGenre ||
+        product.second_subgenre === selectedGenre
     );
   }
 
