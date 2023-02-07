@@ -26,7 +26,7 @@ const Product = ({ selectedGenre }) => {
     getData();
   }, []);
 
-  console.log(productsData);
+  // console.log(productsData);
 
   let filteredData = productsData;
   if (selectedGenre) {
