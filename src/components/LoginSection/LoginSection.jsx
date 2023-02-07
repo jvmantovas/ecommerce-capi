@@ -50,7 +50,6 @@ const LoginSection = () => {
         email: data.email,
         password: data.password,
       };
-      console.log(sendData);
 
       const response = await axios.post(
         "http://localhost/ecommerce-capi/insert.php",
