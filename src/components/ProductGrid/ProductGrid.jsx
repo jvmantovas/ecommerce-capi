@@ -41,9 +41,9 @@ const ProductGrid = () => {
       <GridView>
         {filteredProductsData.map((product) => (
           <Product
-            key={product.id}
-            product={product}
-            selectedGenre={selectedGenre}
+          // key={product.id}
+          // product={product}
+          // selectedGenre={selectedGenre}
           />
         ))}
       </GridView>
