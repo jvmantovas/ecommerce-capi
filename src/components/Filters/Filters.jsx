@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ClearFiltersButton,
   FilterCheckbox,
@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 const Filters = ({ onFilterChange }) => {
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   const handleGenreClick = (genre) => {
     setSelectedGenre(genre);
