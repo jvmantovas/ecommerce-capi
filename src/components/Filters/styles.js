@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const FiltersContainer = styled.div`
-  width: 20%;
+  width: 10%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   padding: 1rem;
 `;
 
@@ -15,6 +15,15 @@ export const FilterSection = styled.div`
 
 export const FilterTitle = styled.h3`
   margin-bottom: 0.5rem;
+  font-family: "HarmoniaSansW01-Regular";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: #000000;
+  text-align: left;
+  padding-top: 0.25rem;
 `;
 
 export const GenresList = styled.ul`
@@ -25,6 +34,13 @@ export const GenresList = styled.ul`
   text-align: left;
   padding: 0;
   margin: 0;
+  font-family: "HarmoniaSansW01-Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #444444;
 `;
 
 export const GenreItem = styled.li`
