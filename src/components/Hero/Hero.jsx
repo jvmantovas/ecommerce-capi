@@ -78,7 +78,7 @@ const Hero = () => {
             >
               <SlArrowLeft size={45} style={{ color: "#444444" }} />
             </LeftArrowDiv>
-            <ProductList filterType="promo" />
+            <ProductList filterType="" />
             <RightArrowDiv
               show={showRightArrow}
               onClick={() => handleRightArrowClick(cardsWrapperRef2)}
@@ -102,7 +102,7 @@ const Hero = () => {
             >
               <SlArrowLeft size={45} style={{ color: "#444444" }} />
             </LeftArrowDiv>
-            <ProductList filterType="promo" />
+            <ProductList filterType="" />
             <RightArrowDiv
               show={showRightArrow}
               onClick={() => handleRightArrowClick(cardsWrapperRef3)}
