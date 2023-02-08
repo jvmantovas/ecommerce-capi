@@ -2,22 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Filters } from "../Filters/Filters";
 import { Product } from "../Product/Product";
 import { GridView, ProductsWrapper } from "./styles";
-import axios from "axios";
+import { useProductData } from "../../hooks/useProductData";
+import { SortMenu } from "../SortMenu/SortMenu";
 
 const ProductGrid = () => {
-  const [products, setProducts] = useState([]);
+  const products = useProductData();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filter, setFilter] = useState({ genre: "", promoChecked: false });
-
-  useEffect(() => {
-    async function getData() {
-      const response = await axios.get(
-        "http://localhost/ecommerce-capi/products.php"
-      );
-      setProducts(response.data);
-    }
-    getData();
-  }, []);
+  const [sort, setSort] = useState("default");
 
   useEffect(() => {
     let filteredProducts = products;
@@ -38,8 +30,20 @@ const ProductGrid = () => {
       );
     }
 
+    if (sort === "highest") {
+      filteredProducts.sort(
+        (a, b) => parseFloat(b.price) - parseFloat(a.price)
+      );
+    } else if (sort === "lowest") {
+      filteredProducts.sort(
+        (a, b) => parseFloat(a.price) - parseFloat(b.price)
+      );
+    } else {
+      filteredProducts.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+    }
+
     setFilteredProducts(filteredProducts);
-  }, [filter, products]);
+  }, [filter, products, sort]);
 
   const handleFilterChange = (newFilter) => {
     setFilter({ ...filter, ...newFilter });
@@ -48,6 +52,7 @@ const ProductGrid = () => {
   return (
     <ProductsWrapper>
       <Filters handleFilterChange={handleFilterChange} />
+      <SortMenu handleSort={setSort} />
       <GridView>
         <Product products={filteredProducts} />
       </GridView>

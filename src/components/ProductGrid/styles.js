@@ -5,12 +5,13 @@ export const ProductsWrapper = styled.div`
   flex-direction: row;
   height: 100%;
   background-color: #f6d53b;
-  padding: 2rem;
+  padding: 5rem 2rem;
 `;
 
 export const GridView = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
-  width: 80%;
+  width: 85%;
+  padding-top: 2.5rem;
 `;
