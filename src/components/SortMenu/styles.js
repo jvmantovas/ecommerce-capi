@@ -6,7 +6,7 @@ export const SortMenuWrapper = styled.div`
   max-width: 100%;
   position: absolute;
   z-index: 10;
-  padding-left: 18%;
+  margin-left: 11%;
   button {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem;

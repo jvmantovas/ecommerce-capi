@@ -4,13 +4,9 @@ import { SortMenuWrapper } from "./styles";
 const SortMenu = ({ handleSort }) => {
   return (
     <SortMenuWrapper>
-      <button onClick={() => handleSort("default")}>Default</button>
-      <button onClick={() => handleSort("highest")}>
-        Highest to Lowest Price
-      </button>
-      <button onClick={() => handleSort("lowest")}>
-        Lowest to Highest Price
-      </button>
+      <button onClick={() => handleSort("default")}>Padrão</button>
+      <button onClick={() => handleSort("highest")}>Maior para menor</button>
+      <button onClick={() => handleSort("lowest")}>Menor para maior</button>
     </SortMenuWrapper>
   );
 };
