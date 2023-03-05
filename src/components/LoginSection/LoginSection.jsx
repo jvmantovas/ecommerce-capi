@@ -84,17 +84,25 @@ const LoginSection = () => {
       };
       const response = await axios.post(
         "http://localhost/ecommerce-capi/login.php",
-        userData
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       if (response.status === 200) {
         localStorage.setItem("userName", response.data.user.name);
         localStorage.setItem("userEmail", response.data.user.email);
+        localStorage.setItem("userID", response.data.user.id);
+        localStorage.setItem("token", response.data.token);
         navigate(`/account`);
       } else {
         toast.error("E-mail ou password inválido!");
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error("E-mail ou password inválido!");
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
