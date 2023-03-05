@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import {
   CardsWrapper,
   LeftArrowDiv,
@@ -78,7 +79,7 @@ const Hero = () => {
             >
               <SlArrowLeft size={45} style={{ color: "#444444" }} />
             </LeftArrowDiv>
-            <ProductList filterType="" />
+            <ProductList filterType="latest" />
             <RightArrowDiv
               show={showRightArrow}
               onClick={() => handleRightArrowClick(cardsWrapperRef2)}
@@ -102,7 +103,7 @@ const Hero = () => {
             >
               <SlArrowLeft size={45} style={{ color: "#444444" }} />
             </LeftArrowDiv>
-            <ProductList filterType="" />
+            <ProductList filterType="discount" />
             <RightArrowDiv
               show={showRightArrow}
               onClick={() => handleRightArrowClick(cardsWrapperRef3)}
