@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Main } from "../Hero/styles";
+import axios from "axios";
+import { toast } from "react-toastify";
 import {
   CartWrapper,
   CartTable,
@@ -9,18 +11,67 @@ import {
 } from "./styles";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Produto 1", price: 10, quantity: 2 },
-    { id: 2, name: "Produto 2", price: 15, quantity: 1 },
-    { id: 3, name: "Produto 3", price: 20, quantity: 3 },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
+  const userId = localStorage.getItem("userID");
 
-  const handleRemoveFromCart = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      const response = await axios.get(
+        `http://localhost/ecommerce-capi/cart_items.php?user_id=${userId}`
+      );
+      setCartItems(response.data);
+    };
+
+    fetchCartItems();
+  }, []);
+
+  const handleRemoveFromCart = async (id) => {
+    try {
+      const deleteData = {
+        data: {
+          user_id: userId,
+          product_id: String(id),
+        },
+      };
+      console.log(deleteData);
+      const response = await axios.delete(
+        "http://localhost/ecommerce-capi/remove_from_cart.php",
+        deleteData
+      );
+      if (response.data.status === "success") {
+        toast.success(response.data.message);
+        setCartItems(cartItems.filter((item) => item.product_id !== id));
+      } else {
+        toast.error("Falha ao remover o produto do carrinho");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleEmptyCart = () => {
-    setCartItems([]);
+  const handleEmptyCart = async (id) => {
+    const deleteData = {
+      data: {
+        user_id: userId,
+        product_id: String(id),
+        delete_all: true,
+      },
+    };
+
+    try {
+      const response = await axios.delete(
+        "http://localhost/ecommerce-capi/remove_from_cart.php",
+        deleteData
+      );
+      if (response.data.status === "success") {
+        toast.success(response.data.message);
+        setCartItems([]);
+      } else {
+        toast.error("Falha ao esvaziar o carrinho");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -45,7 +96,9 @@ const Cart = () => {
                 <td>{item.quantity}</td>
                 <td>R${item.price * item.quantity}</td>
                 <td className="remove-td">
-                  <CartButton onClick={() => handleRemoveFromCart(item.id)}>
+                  <CartButton
+                    onClick={() => handleRemoveFromCart(item.product_id)}
+                  >
                     Remover
                   </CartButton>
                 </td>
@@ -63,7 +116,9 @@ const Cart = () => {
           </h3>
           <CartButtonsWrapper>
             <PaymentButton>Prosseguir para pagamento</PaymentButton>
-            <CartButton onClick={handleEmptyCart}>Esvaziar Carrinho</CartButton>
+            <CartButton onClick={() => handleEmptyCart(1)}>
+              Esvaziar Carrinho
+            </CartButton>
           </CartButtonsWrapper>
         </div>
       </CartWrapper>
