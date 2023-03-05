@@ -10,6 +10,15 @@ export const Card = styled.div`
   background: #f6d53b;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
   position: relative;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    button {
+      visibility: visible;
+      transform: translateY(-8px);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
 `;
 
 export const Cover = styled.img`
@@ -96,4 +105,32 @@ export const Price = styled.p`
   color: #ce2237;
   text-align: right;
   align-self: flex-end;
+`;
+
+export const AddToCartButton = styled.button`
+  visibility: hidden;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: #ce2237;
+  color: #fff;
+  font-family: "HarmoniaSansW01-Semibold";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #a1162d;
+  }
 `;
