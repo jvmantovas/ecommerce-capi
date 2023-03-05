@@ -21,6 +21,12 @@ const ProductList = ({ filterType, genre }) => {
           product.first_subgenre === genre ||
           product.second_subgenre === genre
       );
+    } else if (filterType === "latest") {
+      filteredProducts.sort((a, b) => b.id - a.id);
+    } else if (filterType === "discount") {
+      filteredProducts.sort(
+        (a, b) => b.old_price - b.price - (a.old_price - a.price)
+      );
     }
 
     filteredProducts = filteredProducts.slice(0, 10);
