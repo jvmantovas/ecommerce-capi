@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Main } from "../Hero/styles";
 import {
   AccountWrapper,
@@ -10,14 +10,18 @@ import {
   OrderHistoryWrapper,
   UserInfo,
 } from "./styles";
+import axios from "axios";
 
 const MyAccount = () => {
   const [showOrderHistory, setShowOrderHistory] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
   let navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
     navigate(`/login`);
   };
 
@@ -25,6 +29,25 @@ const MyAccount = () => {
     if (!localStorage.getItem("userName")) {
       navigate(`/login`);
     }
+  }, []);
+
+  useEffect(() => {
+    const fetchCartItemsCount = async () => {
+      const userId = localStorage.getItem("userID");
+      const response = await axios.get(
+        `http://localhost/ecommerce-capi/cart_items.php?user_id=${userId}`,
+        userId
+      );
+      console.log(response.data);
+      console.log(response.status);
+      let count = 0;
+      if (Array.isArray(response.data)) {
+        count = response.data.reduce((acc, item) => acc + item.quantity, 0);
+      }
+      setCartItemCount(count);
+    };
+
+    fetchCartItemsCount();
   }, []);
 
   return (
@@ -41,9 +64,10 @@ const MyAccount = () => {
         <div>
           <h3>Carrinho</h3>
           <CartPreview>
-            <p>Exemplo x 2</p>
-
-            <CartButton>Ver Carrinho</CartButton>
+            <p>{cartItemCount} itens no carrinho</p>
+            <Link to="/cart">
+              <CartButton>Ver Carrinho</CartButton>
+            </Link>
           </CartPreview>
         </div>
         <OrderHistoryWrapper>
