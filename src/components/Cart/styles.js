@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const CartWrapper = styled.section`
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-top: 3rem;
-  margin-left: 3rem;
+  padding: 3rem;
+  z-index: 1;
   h2 {
     font-family: "HarmoniaSansW01-Semibold", sans-serif;
     font-size: 50px;
