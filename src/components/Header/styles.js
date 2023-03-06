@@ -1,4 +1,6 @@
+import { CgMenuLeftAlt } from "react-icons/cg";
 import styled from "styled-components";
+import SearchBar from "../SearchBar/SearchBar";
 
 export const UpperHeader = styled.div`
   top: 0;
@@ -20,12 +22,34 @@ export const MainHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 3;
+  z-index: 11;
   padding: 0 2rem;
   position: ${({ sticky }) => (sticky ? "fixed" : "relative")};
   top: ${({ sticky }) => (sticky ? "0" : "auto")};
   .right-side img {
     padding: 10px;
+  }
+  .left-container {
+    display: flex;
+    flex-direction: row;
+  }
+  @media screen and (max-width: 1050px) {
+    img {
+      height: 50px;
+      margin-top: 5px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 1rem;
+    img {
+      height: 45px;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    img {
+      height: 30px;
+      max-width: 200px;
+    }
   }
 `;
 
@@ -38,7 +62,8 @@ export const RightButtons = styled.div`
 
 export const AccountWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  margin-right: 24px;
   cursor: pointer;
   h2 {
     font-family: "HarmoniaSansW01-Regular";
@@ -57,6 +82,17 @@ export const AccountWrapper = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+  @media screen and (max-width: 1050px) {
+    h2 {
+      display: none;
+    }
+    img {
+      height: 25px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    margin-right: 12px;
   }
 `;
 
@@ -82,6 +118,21 @@ export const CartWrapper = styled.div`
       text-decoration: underline;
     }
   }
+  @media screen and (max-width: 1050px) {
+    h2 {
+      display: none;
+    }
+    img {
+      height: 28px;
+      margin-top: 4px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    margin-right: 12px;
+    h2 {
+      display: none;
+    }
+  }
 `;
 
 export const LowerHeader = styled.div`
@@ -99,6 +150,9 @@ export const LowerHeader = styled.div`
     opacity: 0;
     transition: opacity 0.6s ease-out;
   `}
+  @media screen and (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 export const Menu = styled.div`
@@ -112,6 +166,9 @@ export const Menu = styled.div`
   p:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
