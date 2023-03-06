@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   width: 100%;
-  height: 500px;
+  min-height: 500px;
   z-index: 1;
 `;
 
@@ -46,12 +46,12 @@ export const SubButton = styled.div`
 `;
 
 export const FooterInfo = styled.div`
-  height: 350px;
+  min-height: 350px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 3rem 3rem;
+  padding: 3rem;
   div {
     padding: 2rem;
     .social-icons {
@@ -72,6 +72,28 @@ export const FooterInfo = styled.div`
   }
   ul {
     list-style: none;
+  }
+  @media screen and (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1.5rem;
+    div {
+      padding: 1rem;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    div {
+      padding: 1rem;
+    }
+    .social-icons {
+      padding-top: 2rem;
+      max-width: 60%;
+    }
   }
 `;
 
