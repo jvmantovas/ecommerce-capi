@@ -1,6 +1,4 @@
-import { CgMenuLeftAlt } from "react-icons/cg";
 import styled from "styled-components";
-import SearchBar from "../SearchBar/SearchBar";
 
 export const UpperHeader = styled.div`
   top: 0;
@@ -176,7 +174,6 @@ export const DropDown = styled.div`
   display: flex;
   position: absolute;
   top: 46px;
-  /* left: 0; */
   width: 100%;
   box-sizing: border-box;
   max-width: 250px;
