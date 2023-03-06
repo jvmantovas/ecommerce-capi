@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { CgMenuLeftAlt } from "react-icons/cg";
 import { Link } from "react-router-dom";
-import Button from "../Button/Button";
+import SearchBar from "../SearchBar/SearchBar";
 import {
   AccountWrapper,
   CartWrapper,
@@ -18,25 +19,67 @@ const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showUpperHeader, setShowUpperHeader] = useState(true);
   const [showLowerHeader, setShowLowerHeader] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.pageYOffset);
-      if (window.pageYOffset > 0) {
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      setScrollPosition(scrollTop);
+
+      if (scrollTop > 0) {
         setShowUpperHeader(false);
         setShowLowerHeader(false);
+        setIsMenuOpen(false);
       } else {
         setShowUpperHeader(true);
         setShowLowerHeader(true);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll, { passive: true });
     };
   }, []);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsSmallScreen(window.innerWidth <= 768);
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const handleMediaQueryChange = (e) => {
+      setIsSmallScreen(e.matches);
+    };
+
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    // Set initial value
+    setIsSmallScreen(mediaQuery.matches);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
+  const leftContainer = isSmallScreen ? (
+    <CgMenuLeftAlt size={35} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+  ) : (
+    <>
+      <CgMenuLeftAlt size={35} style={{ display: "none" }} />
+      <SearchBar />
+    </>
+  );
 
   const genres = [
     "Pop",
@@ -51,10 +94,10 @@ const Header = () => {
 
   return (
     <header>
-      <UpperHeader hidden={!showUpperHeader} />
+      <UpperHeader hidden={!showUpperHeader || isSmallScreen} />
       <Hr />
       <MainHeader sticky={!showUpperHeader && !showLowerHeader}>
-        <Button />
+        <div className="left-container">{leftContainer}</div>
         <Link to={`/`} style={{ textDecoration: "none" }}>
           <img src="../../../public/capi-logo.svg" alt="" />
         </Link>
