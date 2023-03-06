@@ -31,7 +31,7 @@ const Product = ({ products }) => {
       };
       console.log(productData);
       const response = await axios.post(
-        "http://localhost/ecommerce-capi/add_to_cart.php",
+        "http://capivararecords.rf.gd/add_to_cart.php",
         productData,
         {
           headers: {

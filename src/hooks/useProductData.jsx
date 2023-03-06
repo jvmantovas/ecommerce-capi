@@ -7,7 +7,7 @@ export function useProductData() {
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
-        "http://localhost/ecommerce-capi/products.php"
+        "http://capivararecords.rf.gd/products.php"
       );
       setProducts(response.data);
     }

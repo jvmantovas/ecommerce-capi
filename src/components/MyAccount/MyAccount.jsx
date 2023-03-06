@@ -39,7 +39,7 @@ const MyAccount = () => {
     const fetchCartItemsCount = async () => {
       const userId = localStorage.getItem("userID");
       const response = await axios.get(
-        `http://localhost/ecommerce-capi/cart_items.php?user_id=${userId}`,
+        `http://capivararecords.rf.gd/cart_items.php?user_id=${userId}`,
         userId
       );
       console.log(response.data);

@@ -52,7 +52,7 @@ const LoginSection = () => {
       };
 
       const response = await axios.post(
-        "http://localhost/ecommerce-capi/insert.php",
+        "http://capivararecords.rf.gd/insert.php",
         sendData
       );
 
@@ -83,7 +83,7 @@ const LoginSection = () => {
         password: user.password,
       };
       const response = await axios.post(
-        "http://localhost/ecommerce-capi/login.php",
+        "http://capivararecords.rf.gd/login.php",
         userData,
         {
           headers: {
