@@ -1,8 +1,9 @@
 import React from "react";
 import { CiFacebook, CiInstagram, CiYoutube } from "react-icons/ci";
 
-import { Input, Form, SearchContainer, Submit } from "../Button/styles";
-import { FooterCopy, FooterInfo, Main, SubButton, Subscribe } from "./styles";
+import { Input, Form, SearchContainer, Submit } from "../SearchBar/styles";
+import { FooterCopy, FooterInfo, SubButton, Subscribe } from "./styles";
+import { Main } from "../Hero/styles";
 
 const Footer = () => {
   return (
