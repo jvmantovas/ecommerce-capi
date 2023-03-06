@@ -4,7 +4,10 @@ import { Main } from "../Hero/styles";
 import {
   AccountWrapper,
   CartButton,
+  CartInfo,
   CartPreview,
+  InfoWrapper,
+  LogoutButton,
   OrderHistory,
   OrderHistoryButton,
   OrderHistoryWrapper,
@@ -15,6 +18,7 @@ import axios from "axios";
 const MyAccount = () => {
   const [showOrderHistory, setShowOrderHistory] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
   let navigate = useNavigate();
 
   const handleLogout = () => {
@@ -45,32 +49,44 @@ const MyAccount = () => {
         count = response.data.reduce((acc, item) => acc + item.quantity, 0);
       }
       setCartItemCount(count);
+      setCartItems(response.data);
     };
 
     fetchCartItemsCount();
   }, []);
 
+  const getTotalPrice = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0
+    );
+  };
+
   return (
     <Main style={{ backgroundColor: "#f6d53b" }}>
       <AccountWrapper>
         <h2>Minha Conta</h2>
-        <CartButton onClick={handleLogout}>Logout</CartButton>
-        <UserInfo>
-          <h3>Informações do Usuário</h3>
-          <p>Nome: {localStorage.getItem("userName")}</p>
-          <p>Email: {localStorage.getItem("userEmail")}</p>
-          <p>Endereço: Exemplo</p>
-        </UserInfo>
-        <div>
-          <h3>Carrinho</h3>
-          <CartPreview>
-            <p>{cartItemCount} itens no carrinho</p>
-            <Link to="/cart">
-              <CartButton>Ver Carrinho</CartButton>
-            </Link>
-          </CartPreview>
-        </div>
-        <OrderHistoryWrapper>
+        <InfoWrapper>
+          <UserInfo>
+            <h3>Informações do Usuário</h3>
+            <p>Total: R${getTotalPrice()}</p>{" "}
+            <p>Nome: {localStorage.getItem("userName")}</p>
+            <p>Email: {localStorage.getItem("userEmail")}</p>
+            <p>Endereço: Exemplo</p>
+          </UserInfo>
+          <CartInfo>
+            <h3>Carrinho</h3>
+            <CartPreview>
+              <p>{cartItemCount} itens no carrinho</p>
+              <h3>Total: R${getTotalPrice()}</h3>
+              <Link to="/cart">
+                <CartButton>Ver Carrinho</CartButton>
+              </Link>
+            </CartPreview>
+          </CartInfo>
+        </InfoWrapper>
+        <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+        {/* <OrderHistoryWrapper>
           <h3>Histórico de Pedidos</h3>
           <OrderHistory>
             <div>
@@ -79,7 +95,7 @@ const MyAccount = () => {
               <p>Itens: Exemplo</p>
             </div>
           </OrderHistory>
-        </OrderHistoryWrapper>
+        </OrderHistoryWrapper> */}
       </AccountWrapper>
     </Main>
   );
