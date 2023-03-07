@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ClearFiltersButton,
   FilterCheckbox,
@@ -10,8 +11,9 @@ import {
   GenresList,
 } from "./styles";
 
-const Filters = ({ handleFilterChange }) => {
+const Filters = ({ handleFilterChange, handleClearFilters }) => {
   const [promoChecked, setPromoChecked] = useState(false);
+  const navigate = useNavigate();
 
   const handleGenreClick = (genre) => {
     handleFilterChange({ genre });
@@ -23,42 +25,53 @@ const Filters = ({ handleFilterChange }) => {
   };
 
   const handleClearClick = () => {
-    setPromoChecked(false);
     handleFilterChange({ genre: "", promoChecked: false });
+    setPromoChecked(false);
+    navigate("/products");
   };
 
   return (
     <FiltersContainer>
       <FilterSection>
-        <FilterTitle>Gêneros</FilterTitle>
-        <GenresList>
-          <GenreItem type="checkbox" onClick={() => handleGenreClick("")}>
-            Todos
-          </GenreItem>
-          <GenreItem type="checkbox" onClick={() => handleGenreClick("Brasil")}>
-            Brasil
-          </GenreItem>
-          <GenreItem onClick={() => handleGenreClick("Rock")}>Rock</GenreItem>
-          <GenreItem onClick={() => handleGenreClick("Reggae")}>
-            Reggae
-          </GenreItem>
-          <GenreItem onClick={() => handleGenreClick("Electronic")}>
-            Electronic
-          </GenreItem>
-          <GenreItem onClick={() => handleGenreClick("House")}>House</GenreItem>
-        </GenresList>
+        <FilterSection>
+          <FilterTitle htmlFor="promo" className="promo-label">
+            Promoção
+          </FilterTitle>
+          <FilterCheckbox
+            type="checkbox"
+            id="promo"
+            defaultChecked={promoChecked}
+            onClick={handlePromoClick}
+          />
+        </FilterSection>
+        <FilterSection>
+          <FilterTitle>Gêneros</FilterTitle>
+          <GenresList>
+            <GenreItem type="checkbox" onClick={() => handleGenreClick("")}>
+              Todos
+            </GenreItem>
+            <GenreItem
+              type="checkbox"
+              onClick={() => handleGenreClick("Brasil")}
+            >
+              Brasil
+            </GenreItem>
+            <GenreItem onClick={() => handleGenreClick("Rock")}>Rock</GenreItem>
+            <GenreItem onClick={() => handleGenreClick("Reggae")}>
+              Reggae
+            </GenreItem>
+            <GenreItem onClick={() => handleGenreClick("Electronic")}>
+              Electronic
+            </GenreItem>
+            <GenreItem onClick={() => handleGenreClick("House")}>
+              House
+            </GenreItem>
+          </GenresList>
+        </FilterSection>
+        <ClearFiltersButton onClick={handleClearClick}>
+          Limpar Filtros
+        </ClearFiltersButton>
       </FilterSection>
-      <FilterSection>
-        <FilterTitle>Faixa de Preço</FilterTitle>
-        <FilterRange type="range" />
-      </FilterSection>
-      <FilterSection>
-        <FilterTitle>Promoção</FilterTitle>
-        <FilterCheckbox type="checkbox" onClick={handlePromoClick} />
-      </FilterSection>
-      <ClearFiltersButton onClick={handleClearClick}>
-        Limpar Filtros
-      </ClearFiltersButton>
     </FiltersContainer>
   );
 };
