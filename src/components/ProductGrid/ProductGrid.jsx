@@ -4,15 +4,35 @@ import { Product } from "../Product/Product";
 import { GridView, ProductsWrapper } from "./styles";
 import { useProductData } from "../../hooks/useProductData";
 import { SortMenu } from "../SortMenu/SortMenu";
+import SearchBar from "../SearchBar/SearchBar";
 
-const ProductGrid = () => {
+const ProductGrid = ({ searchQuery }) => {
   const products = useProductData();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filter, setFilter] = useState({ genre: "", promoChecked: false });
   const [sort, setSort] = useState("default");
 
+  const handleClearFilters = () => {
+    setFilter({ genre: "", promoChecked: false });
+    setSort("default");
+    setSearchQuery("");
+  };
+
   useEffect(() => {
     let filteredProducts = products;
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase(); // extract query as a string
+      filteredProducts = products.filter(
+        (product) =>
+          product.artist.toLowerCase().includes(query) ||
+          product.title.toLowerCase().includes(query) ||
+          product.first_genre.toLowerCase().includes(query) ||
+          product.second_genre.toLowerCase().includes(query) ||
+          product.first_subgenre.toLowerCase().includes(query) ||
+          product.second_subgenre.toLowerCase().includes(query)
+      );
+    }
 
     if (filter.genre) {
       filteredProducts = products.filter(
@@ -43,7 +63,7 @@ const ProductGrid = () => {
     }
 
     setFilteredProducts(filteredProducts);
-  }, [filter, products, sort]);
+  }, [filter, products, sort, searchQuery]);
 
   const handleFilterChange = (newFilter) => {
     setFilter({ ...filter, ...newFilter });
@@ -51,9 +71,13 @@ const ProductGrid = () => {
 
   return (
     <ProductsWrapper>
-      <Filters handleFilterChange={handleFilterChange} />
+      <Filters
+        handleFilterChange={handleFilterChange}
+        handleClearFilters={handleClearFilters}
+      />
       <SortMenu handleSort={setSort} />
       <GridView>
+        {/* <SearchBar onSearch={handleSearch} /> */}
         <Product products={filteredProducts} />
       </GridView>
     </ProductsWrapper>
