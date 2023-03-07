@@ -1,16 +1,32 @@
 import styled from "styled-components";
 
 export const FiltersContainer = styled.div`
-  width: 10%;
+  min-width: 10%;
   display: flex;
   flex-direction: column;
-  align-items: left;
-  padding: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 2rem;
+  margin-right: 0.5rem;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    order: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+    min-width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const FilterSection = styled.div`
-  margin-bottom: 1rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const FilterTitle = styled.h3`
@@ -41,6 +57,11 @@ export const GenresList = styled.ul`
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #444444;
+  @media (max-width: 768px) {
+    flex-direction: row;
+    margin-right: 0;
+    min-width: 80%;
+  }
 `;
 
 export const GenreItem = styled.li`
@@ -54,6 +75,33 @@ export const GenreItem = styled.li`
 
 export const FilterCheckbox = styled.input`
   margin-right: 0.5rem;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  -webkit-appearance: none;
+  background-color: #eee;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  align-self: center;
+  &::before {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  &:checked::before {
+    display: block;
+    background-color: #ce2237;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
+  }
+  @media (max-width: 768px) {
+    align-self: flex-start;
+  }
 `;
 
 export const FilterRange = styled.input`
@@ -70,5 +118,8 @@ export const ClearFiltersButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #444;
+  }
+  @media (max-width: 768px) {
+    margin-top: 0.5rem;
   }
 `;

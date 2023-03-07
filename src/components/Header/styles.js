@@ -44,9 +44,11 @@ export const MainHeader = styled.div`
     }
   }
   @media screen and (max-width: 460px) {
+    padding: 0 0.5rem;
     img {
       height: 30px;
       max-width: 200px;
+      min-width: 100%;
     }
   }
 `;

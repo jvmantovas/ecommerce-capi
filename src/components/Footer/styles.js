@@ -8,7 +8,7 @@ export const Main = styled.div`
 
 export const Subscribe = styled.div`
   height: 75px;
-  width: 100%;
+  max-width: 100%;
   background-color: #ce2237;
   display: flex;
   flex-direction: row;
@@ -23,6 +23,23 @@ export const Subscribe = styled.div`
     letter-spacing: 0.4px;
     color: #ffffff;
     padding-right: 1rem;
+  }
+  @media screen and (max-width: 1050px) {
+    p {
+      padding-left: 2rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column; /* stack content vertically on medium screens */
+    height: auto;
+    padding: 1rem;
+    p {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    padding: 1rem;
   }
 `;
 
@@ -43,6 +60,18 @@ export const SubButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  &:hover {
+    box-shadow: 0px 2px 2px 1px black;
+  }
+  @media screen and (max-width: 1050px) {
+    margin-right: 3rem;
+    min-width: 100px;
+    font-size: 16px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0.8rem;
+    font-size: 16px;
+  }
 `;
 
 export const FooterInfo = styled.div`
@@ -72,6 +101,10 @@ export const FooterInfo = styled.div`
   }
   ul {
     list-style: none;
+  }
+  @media screen and (max-width: 1050px) {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr 0.5fr;
   }
   @media screen and (max-width: 768px) {
     display: grid;

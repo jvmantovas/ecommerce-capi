@@ -5,6 +5,7 @@ export const Card = styled.div`
   height: 350px;
   width: 250px;
   display: flex;
+  border-radius: 5px;
   flex-direction: column;
   padding: 1rem 1.5rem;
   background: #f6d53b;
@@ -13,11 +14,24 @@ export const Card = styled.div`
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
   &:hover {
+    transform: translateY(-3px);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
     button {
       visibility: visible;
       transform: translateY(-8px);
       box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
     }
+  }
+
+  @media (max-width: 630px) {
+    height: 400px;
+    width: 300px;
+  }
+
+  @media (max-width: 350px) {
+    height: 350px;
+    width: 250px;
   }
 `;
 
@@ -26,6 +40,14 @@ export const Cover = styled.img`
   height: 200px;
   box-shadow: inset 4px 4px 4px 10px rgba(0, 0, 0, 0.25);
   align-self: center;
+  @media (max-width: 630px) {
+    width: 250px;
+    height: 250px;
+  }
+  @media (max-width: 350px) {
+    height: 200px;
+    width: 200px;
+  }
 `;
 
 export const AlbumTitle = styled.h2`

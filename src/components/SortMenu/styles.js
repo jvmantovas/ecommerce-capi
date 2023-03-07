@@ -17,4 +17,8 @@ export const SortMenuWrapper = styled.div`
     cursor: pointer;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
   }
+  @media (max-width: 768px) {
+    position: relative;
+    margin-left: 0;
+  }
 `;

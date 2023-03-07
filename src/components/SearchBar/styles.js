@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const SearchContainer = styled.div`
   background: #fafafa;
   border-radius: 20px;
+  @media screen and (max-width: 1050px) {
+    display: block;
+  }
 `;
 
 export const Form = styled.form`

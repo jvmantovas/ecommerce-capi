@@ -60,6 +60,12 @@ export const CardsWrapper = styled.div`
     top: 0;
     z-index: -1;
   }
+  @media (max-width: 630px) {
+    height: 450px;
+  }
+  @media (max-width: 350px) {
+    height: 400px;
+  }
 `;
 
 export const LeftArrowDiv = styled.div`
