@@ -38,14 +38,26 @@ export const ModalContent = styled.div`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 0.5rem;
-  right: 1.5rem;
+  /* top: 0.5rem;
+  right: 1.5rem; */
+  top: 0;
+  right: 0;
   background-color: transparent;
   border: none;
-  font-size: 2rem;
-  color: #000;
+  font-size: 2.5rem;
+  color: #ce2237;
   cursor: pointer;
   transition: color 0.2s ease-in-out;
+
+  span {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    /* margin: -10px;
+    right: 0.5rem; */
+  }
 
   &:hover,
   &:focus {
