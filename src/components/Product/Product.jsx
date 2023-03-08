@@ -13,9 +13,11 @@ import {
   SubGenre,
   AddToCartButton,
 } from "./styles";
+import { Modal } from "../Modal/Modal";
 
 const Product = ({ products }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const addToCart = async (product_id) => {
     setIsLoading(true);
@@ -54,11 +56,23 @@ const Product = ({ products }) => {
     }
   };
 
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+  };
+
   return (
     <>
       {products.map((product, index) => (
         <Card key={product.id || index}>
-          <Cover src={product.image} alt="" />
+          <Cover
+            src={product.image}
+            alt=""
+            onClick={() => handleProductClick(product)}
+          />
           <AlbumTitle>
             {product.artist} - {product.title}
           </AlbumTitle>
@@ -80,6 +94,9 @@ const Product = ({ products }) => {
           </AddToCartButton>
         </Card>
       ))}
+      {selectedProduct && (
+        <Modal product={selectedProduct} onClose={closeModal} />
+      )}
     </>
   );
 };
