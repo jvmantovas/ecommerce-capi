@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import {
   AddToCartButton,
   AlbumTitle,
@@ -23,11 +24,11 @@ const Modal = ({ product, onClose }) => {
   };
 
   return (
-    <Overlay onClick={onClose}>
+    <Overlay>
       <ModalWrapper onKeyDown={handleKeyDown} tabIndex={-1}>
         <CloseButton onClick={onClose}>
-          <span aria-hidden="true">&times;</span>
-          {/* <span className="sr-only">Close</span> */}
+          {/* <span aria-hidden="true">&times;</span> */}
+          <AiOutlineCloseCircle />
         </CloseButton>
         <ModalContent>
           <Cover src={product.image} alt="" />
