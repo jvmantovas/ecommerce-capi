@@ -17,6 +17,7 @@ export const Card = styled.div`
     transform: translateY(-3px);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
     button {
       visibility: visible;
       transform: translateY(-8px);
