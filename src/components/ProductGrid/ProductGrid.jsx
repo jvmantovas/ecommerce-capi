@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Filters } from "../Filters/Filters";
 import { Product } from "../Product/Product";
 import { GridView, ProductsWrapper } from "./styles";
 import { useProductData } from "../../hooks/useProductData";
 import { SortMenu } from "../SortMenu/SortMenu";
-import { useLocation } from "react-router-dom";
 
 const ProductGrid = ({ searchQuery, selectedGenre, filterType }) => {
-  const location = useLocation();
   const products = useProductData();
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [filter, setFilter] = useState({
     genre: "",
     promoChecked: false,
@@ -21,7 +18,11 @@ const ProductGrid = ({ searchQuery, selectedGenre, filterType }) => {
     setSort("default");
   };
 
-  useEffect(() => {
+  const handleSort = (newSort) => {
+    setSort(newSort);
+  };
+
+  const filteredProducts = useMemo(() => {
     let filteredProducts = products;
 
     if (searchQuery) {
@@ -89,16 +90,8 @@ const ProductGrid = ({ searchQuery, selectedGenre, filterType }) => {
       filteredProducts.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
     }
 
-    setFilteredProducts(filteredProducts);
-  }, [
-    filter,
-    products,
-    location,
-    sort,
-    searchQuery,
-    selectedGenre,
-    filterType,
-  ]);
+    return filteredProducts;
+  }, [filter, products, sort, searchQuery, selectedGenre, filterType]);
 
   const handleFilterChange = (newFilter) => {
     setFilter({ ...filter, ...newFilter });
@@ -110,7 +103,7 @@ const ProductGrid = ({ searchQuery, selectedGenre, filterType }) => {
         handleFilterChange={handleFilterChange}
         handleClearFilters={handleClearFilters}
       />
-      <SortMenu handleSort={setSort} />
+      <SortMenu handleSort={handleSort} />
       <GridView>
         <Product products={filteredProducts} />
       </GridView>
