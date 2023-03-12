@@ -9,12 +9,18 @@ import { useLocation } from "react-router-dom";
 const Products = () => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("search");
+  const selectedGenre = new URLSearchParams(location.search).get("genre");
+  const filterType = new URLSearchParams(location.search).get("filter");
 
   return (
     <>
       <Header />
       <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
-      <ProductGrid searchQuery={searchQuery} />
+      <ProductGrid
+        searchQuery={searchQuery}
+        selectedGenre={selectedGenre}
+        filterType={filterType}
+      />
       <Footer />
     </>
   );
