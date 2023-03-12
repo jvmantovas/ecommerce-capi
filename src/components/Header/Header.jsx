@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { MenuOverlay } from "../MenuOverlay/MenuOverlay";
 import SearchBar from "../SearchBar/SearchBar";
 import {
   AccountWrapper,
   CartWrapper,
   DropDown,
+  HamburguerMenu,
   Hr,
   LowerHeader,
   MainHeader,
@@ -23,6 +25,7 @@ const Header = () => {
   const [showLowerHeader, setShowLowerHeader] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +66,12 @@ const Header = () => {
   }, []);
 
   const leftContainer = isSmallScreen ? (
-    <CgMenuLeftAlt size={35} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+    <>
+      <HamburguerMenu>
+        <CgMenuLeftAlt size={35} onClick={() => setNavbarOpen(!navbarOpen)} />
+      </HamburguerMenu>
+      <MenuOverlay navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} />
+    </>
   ) : (
     <SearchBar />
   );
