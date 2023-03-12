@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { toast } from "react-toastify";
 import {
   AddToCartButton,
   AlbumTitle,
@@ -17,9 +19,46 @@ import {
 } from "./styles";
 
 const Modal = ({ product, onClose }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleKeyDown = (event) => {
     if (event.key === "Escape") {
       onClose();
+    }
+  };
+
+  const addToCart = async (product_id) => {
+    setIsLoading(true);
+    const userId = localStorage.getItem("userID");
+    const token = localStorage.getItem("token");
+    try {
+      const productData = {
+        user_id: userId,
+        product_id: product_id,
+        quantity: 1,
+        token: token,
+      };
+      const response = await axios.post(
+        "http://localhost/ecommerce-capi/add_to_cart.php",
+        productData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 201 || response.status === 200) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.status, response.data.message, "Falhou");
+        toast.error(response.data.message);
+        console.log(response.data);
+      }
+    } catch (error) {
+      toast.error(error.message, "Falhou");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -27,7 +66,6 @@ const Modal = ({ product, onClose }) => {
     <Overlay>
       <ModalWrapper onKeyDown={handleKeyDown} tabIndex={-1}>
         <CloseButton onClick={onClose}>
-          {/* <span aria-hidden="true">&times;</span> */}
           <AiOutlineCloseCircle />
         </CloseButton>
         <ModalContent>
