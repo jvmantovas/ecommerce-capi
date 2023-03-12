@@ -6,10 +6,16 @@ export const SearchContainer = styled.div`
   @media screen and (max-width: 1050px) {
     display: block;
   }
+  @media screen and (max-width: 768px) {
+    min-width: 100%;
+  }
 `;
 
 export const Form = styled.form`
   position: relative;
+  @media screen and (max-width: 768px) {
+    min-width: 100%;
+  }
 `;
 
 export const Input = styled.input`
@@ -21,6 +27,10 @@ export const Input = styled.input`
   &:focus {
     border: 0;
     outline: 0;
+  }
+  @media screen and (max-width: 768px) {
+    height: 35px;
+    width: 85vw;
   }
 `;
 

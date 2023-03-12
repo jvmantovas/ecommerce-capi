@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const SortMenuWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
-  max-width: 100%;
+  justify-content: center;
+  min-width: 100%;
   position: absolute;
   z-index: 10;
   margin-left: 11%;

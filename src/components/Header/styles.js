@@ -128,7 +128,7 @@ export const CartWrapper = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    margin-right: 12px;
+    margin-right: 1rem;
     h2 {
       display: none;
     }
@@ -152,6 +152,8 @@ export const LowerHeader = styled.div`
   `}
   @media screen and (max-width: 768px) {
     padding: 0 1rem;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
