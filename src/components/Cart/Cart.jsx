@@ -17,6 +17,12 @@ const Cart = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
+    if (!localStorage.getItem("userName")) {
+      navigate(`/login`);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchCartItems = async () => {
       const response = await axios.get(
         `http://localhost/ecommerce-capi/cart_items.php?user_id=${userId}`
@@ -76,12 +82,6 @@ const Cart = () => {
     }
   };
 
-  useEffect(() => {
-    if (!localStorage.getItem("userName")) {
-      navigate(`/login`);
-    }
-  }, []);
-
   return (
     <Main style={{ backgroundColor: "#f6d53b" }}>
       <CartWrapper>
@@ -101,10 +101,11 @@ const Cart = () => {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>R${item.price}</td>
-                <td>{item.quantity}</td>
+                <td className="quantity">{item.quantity}</td>
                 <td>R${item.price * item.quantity}</td>
                 <td className="remove-td">
                   <CartButton
+                    className="remove-item"
                     onClick={() => handleRemoveFromCart(item.product_id)}
                   >
                     Remover
