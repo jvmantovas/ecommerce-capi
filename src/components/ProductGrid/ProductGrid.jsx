@@ -4,25 +4,28 @@ import { Product } from "../Product/Product";
 import { GridView, ProductsWrapper } from "./styles";
 import { useProductData } from "../../hooks/useProductData";
 import { SortMenu } from "../SortMenu/SortMenu";
-import SearchBar from "../SearchBar/SearchBar";
+import { useLocation } from "react-router-dom";
 
-const ProductGrid = ({ searchQuery }) => {
+const ProductGrid = ({ searchQuery, selectedGenre, filterType }) => {
+  const location = useLocation();
   const products = useProductData();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [filter, setFilter] = useState({ genre: "", promoChecked: false });
+  const [filter, setFilter] = useState({
+    genre: "",
+    promoChecked: false,
+  });
   const [sort, setSort] = useState("default");
 
   const handleClearFilters = () => {
     setFilter({ genre: "", promoChecked: false });
     setSort("default");
-    setSearchQuery("");
   };
 
   useEffect(() => {
     let filteredProducts = products;
 
     if (searchQuery) {
-      const query = searchQuery.toLowerCase(); // extract query as a string
+      const query = searchQuery.toLowerCase();
       filteredProducts = products.filter(
         (product) =>
           product.artist.toLowerCase().includes(query) ||
@@ -44,9 +47,33 @@ const ProductGrid = ({ searchQuery }) => {
       );
     }
 
-    if (filter.promoChecked) {
+    if (selectedGenre) {
+      filteredProducts = products.filter(
+        (product) =>
+          product.first_genre === selectedGenre ||
+          product.second_genre === selectedGenre ||
+          product.first_subgenre === selectedGenre ||
+          product.second_subgenre === selectedGenre
+      );
+    }
+
+    if (filter.promoChecked || filterType === "promo") {
       filteredProducts = filteredProducts.filter(
         (product) => product.old_price !== "0.00"
+      );
+    }
+    if (filterType === "latest") {
+      filteredProducts = products.sort((a, b) => b.id - a.id);
+    }
+    if (filterType === "discount") {
+      filteredProducts = filteredProducts.filter(
+        (product) => parseFloat(product.old_price) > 0
+      );
+      filteredProducts.sort(
+        (a, b) =>
+          parseFloat(b.old_price) -
+          parseFloat(b.price) -
+          (parseFloat(a.old_price) - parseFloat(a.price))
       );
     }
 
@@ -58,12 +85,20 @@ const ProductGrid = ({ searchQuery }) => {
       filteredProducts.sort(
         (a, b) => parseFloat(a.price) - parseFloat(b.price)
       );
-    } else {
+    } else if (sort === "default") {
       filteredProducts.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
     }
 
     setFilteredProducts(filteredProducts);
-  }, [filter, products, sort, searchQuery]);
+  }, [
+    filter,
+    products,
+    location,
+    sort,
+    searchQuery,
+    selectedGenre,
+    filterType,
+  ]);
 
   const handleFilterChange = (newFilter) => {
     setFilter({ ...filter, ...newFilter });
@@ -77,7 +112,6 @@ const ProductGrid = ({ searchQuery }) => {
       />
       <SortMenu handleSort={setSort} />
       <GridView>
-        {/* <SearchBar onSearch={handleSearch} /> */}
         <Product products={filteredProducts} />
       </GridView>
     </ProductsWrapper>
