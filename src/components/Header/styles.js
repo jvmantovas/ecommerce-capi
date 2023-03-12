@@ -53,6 +53,13 @@ export const MainHeader = styled.div`
   }
 `;
 
+export const HamburguerMenu = styled.div`
+  cursor: pointer;
+  &:hover {
+    opacity: 50%;
+  }
+`;
+
 export const RightButtons = styled.div`
   display: flex;
   flex-direction: row;
@@ -89,6 +96,9 @@ export const AccountWrapper = styled.div`
     }
     img {
       height: 25px;
+      &:hover {
+        opacity: 50%;
+      }
     }
   }
   @media screen and (max-width: 768px) {
@@ -125,6 +135,9 @@ export const CartWrapper = styled.div`
     img {
       height: 28px;
       margin-top: 4px;
+      &:hover {
+        opacity: 50%;
+      }
     }
   }
   @media screen and (max-width: 768px) {
