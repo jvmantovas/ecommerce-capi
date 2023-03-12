@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 import {
   CardsWrapper,
   LeftArrowDiv,
@@ -11,11 +10,13 @@ import {
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { useRef } from "react";
 import { ProductList } from "../ProductList/ProductList";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
+  const navigate = useNavigate();
 
   const handleScroll = (e) => {
     const { scrollWidth, clientWidth, scrollLeft } = e.target;
@@ -38,12 +39,18 @@ const Hero = () => {
     ref.current.scrollLeft += 200;
   };
 
+  const handleSeeMoreClick = (filterType) => {
+    navigate(`/products?filter=${filterType}`);
+  };
+
   return (
     <>
       <main>
         <Main style={{ backgroundColor: "#f6d53b" }}>
           <Title style={{ color: "#ce2237" }}>DESCONTOS</Title>
-          <SeeMore>Ver todos</SeeMore>
+          <SeeMore onClick={() => handleSeeMoreClick("promo")}>
+            Ver todos
+          </SeeMore>
           <CardsWrapper
             onScroll={handleScroll}
             scrollLeft={scrollLeft}
@@ -67,7 +74,9 @@ const Hero = () => {
         </Main>
         <Main style={{ backgroundColor: "#CE2237" }}>
           <Title style={{ color: "#f6d53b" }}>NOVIDADES</Title>
-          <SeeMore>Ver todos</SeeMore>
+          <SeeMore onClick={() => handleSeeMoreClick("latest")}>
+            Ver todos
+          </SeeMore>
           <CardsWrapper
             onScroll={handleScroll}
             scrollLeft={scrollLeft}
@@ -91,7 +100,9 @@ const Hero = () => {
         </Main>
         <Main style={{ backgroundColor: "#f6d53b" }}>
           <Title style={{ color: "#CE2237" }}>DESTAQUES</Title>
-          <SeeMore>Ver todos</SeeMore>
+          <SeeMore onClick={() => handleSeeMoreClick("discount")}>
+            Ver todos
+          </SeeMore>
           <CardsWrapper
             onScroll={handleScroll}
             scrollLeft={scrollLeft}
