@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../Hero/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   CartWrapper,
@@ -13,6 +14,7 @@ import {
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("userID");
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -73,6 +75,12 @@ const Cart = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("userName")) {
+      navigate(`/login`);
+    }
+  }, []);
 
   return (
     <Main style={{ backgroundColor: "#f6d53b" }}>
