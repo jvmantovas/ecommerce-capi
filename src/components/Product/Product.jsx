@@ -23,7 +23,6 @@ const Product = ({ products }) => {
     setIsLoading(true);
     const userId = localStorage.getItem("userID");
     const token = localStorage.getItem("token");
-    console.log(userId, token);
     try {
       const productData = {
         user_id: userId,
@@ -31,7 +30,6 @@ const Product = ({ products }) => {
         quantity: 1,
         token: token,
       };
-      console.log(productData);
       const response = await axios.post(
         "http://localhost/ecommerce-capi/add_to_cart.php",
         productData,
