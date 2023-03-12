@@ -69,7 +69,6 @@ const MyAccount = () => {
         <InfoWrapper>
           <UserInfo>
             <h3>Informações do Usuário</h3>
-            <p>Total: R${getTotalPrice()}</p>{" "}
             <p>Nome: {localStorage.getItem("userName")}</p>
             <p>Email: {localStorage.getItem("userEmail")}</p>
             <p>Endereço: Exemplo</p>
