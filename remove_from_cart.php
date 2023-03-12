@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             http_response_code(500);
             $data = [
                 "status" => "failure",
-                "message" => "Unable to delete all cart items"
+                "message" => "Erro: Não foi possível deletar os items do carrinho."
             ];
             echo json_encode($data);
             exit();
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         http_response_code(200);
         $data = [
             "status" => "success",
-            "message" => "All cart items successfully removed"
+            "message" => "O carrinho foi limpo com sucesso!"
         ];
         echo json_encode($data);
         exit();
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         http_response_code(500);
         $data = [
             "status" => "failure",
-            "message" => "Unable to delete cart item"
+            "message" => "Erro: Não foi possível esvaziar o carrinho."
         ];
         echo json_encode($data);
         exit();
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         http_response_code(404);
         $data = [
             "status" => "failure",
-            "message" => "Product not found in cart"
+            "message" => "Erro: Produto não encontrado no carrinho!"
         ];
         echo json_encode($data);
         exit();
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
         http_response_code(500);
         $data = [
             "status" => "failure",
-            "message" => "Unable to delete cart item"
+            "message" => "Erro: Não foi possível remover o item do carrinho."
         ];
         echo json_encode($data);
         exit();
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     http_response_code(200);
     $data = [
         "status" => "success",
-        "message" => "Product successfully removed from cart"
+        "message" => "O produto foi removido com sucesso do carrinho!"
     ];
     echo json_encode($data);
     exit();
