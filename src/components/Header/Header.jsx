@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import {
   AccountWrapper,
@@ -15,11 +16,13 @@ import {
 } from "./styles";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showUpperHeader, setShowUpperHeader] = useState(true);
   const [showLowerHeader, setShowLowerHeader] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,18 +47,6 @@ const Header = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsSmallScreen(window.innerWidth <= 768);
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const handleMediaQueryChange = (e) => {
       setIsSmallScreen(e.matches);
@@ -64,7 +55,6 @@ const Header = () => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
     mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-    // Set initial value
     setIsSmallScreen(mediaQuery.matches);
 
     return () => {
@@ -75,9 +65,16 @@ const Header = () => {
   const leftContainer = isSmallScreen ? (
     <CgMenuLeftAlt size={35} onClick={() => setIsMenuOpen(!isMenuOpen)} />
   ) : (
+    <SearchBar />
+  );
+
+  const logoContainer = isSmallScreen ? (
     <>
-      <CgMenuLeftAlt size={35} style={{ display: "none" }} />
-      <SearchBar />
+      <img src="../../../public/CAPIVARARECORDS.svg" alt="" />
+    </>
+  ) : (
+    <>
+      <img src="../../../public/capi-logo.svg" alt="" />
     </>
   );
 
@@ -92,6 +89,51 @@ const Header = () => {
     "Reggae",
   ];
 
+  const handleGenreClick = (genre) => {
+    setSelectedGenre(genre);
+    navigate(`/products?genre=${genre}`);
+  };
+
+  const lowerMenuContianer = isSmallScreen ? (
+    <SearchBar />
+  ) : (
+    <>
+      <Menu>
+        <div
+          onClick={() => setIsMenuOpen(true)}
+          onMouseEnter={() => setIsMenuOpen(true)}
+        >
+          GÊNEROS
+          {isMenuOpen && (
+            <DropDown
+              onMouseEnter={() => setIsMenuOpen(true)}
+              onMouseLeave={() => setIsMenuOpen(false)}
+            >
+              <div className="dropdown-menu-col">
+                {genres.slice(0, 4).map((genre) => (
+                  <p key={genre} onClick={() => handleGenreClick(genre)}>
+                    {genre}
+                  </p>
+                ))}
+              </div>
+              <div className="dropdown-menu-col">
+                {genres.slice(4).map((genre) => (
+                  <p key={genre} onClick={() => handleGenreClick(genre)}>
+                    {genre}
+                  </p>
+                ))}
+              </div>
+            </DropDown>
+          )}
+        </div>
+        <p onClick={() => navigate("/products")}>PRODUTOS</p>
+        <p>ENTREGAS</p>
+        <p>SOBRE</p>
+        <p>CONTATO</p>
+      </Menu>
+    </>
+  );
+
   return (
     <header>
       <UpperHeader hidden={!showUpperHeader || isSmallScreen} />
@@ -99,7 +141,7 @@ const Header = () => {
       <MainHeader sticky={!showUpperHeader && !showLowerHeader}>
         <div className="left-container">{leftContainer}</div>
         <Link to={`/`} style={{ textDecoration: "none" }}>
-          <img src="../../../public/capi-logo.svg" alt="" />
+          {logoContainer}
         </Link>
         <RightButtons>
           <Link to={`/account`} style={{ textDecoration: "none" }}>
@@ -117,37 +159,7 @@ const Header = () => {
         </RightButtons>
       </MainHeader>
       <Hr />
-      <LowerHeader hidden={!showLowerHeader}>
-        <Menu>
-          <p
-            onClick={() => setIsMenuOpen(true)}
-            onMouseEnter={() => setIsMenuOpen(true)}
-          >
-            GÊNEROS
-            {isMenuOpen && (
-              <DropDown
-                onMouseEnter={() => setIsMenuOpen(true)}
-                onMouseLeave={() => setIsMenuOpen(false)}
-              >
-                <div className="dropdown-menu-col">
-                  {genres.slice(0, 4).map((genre) => (
-                    <p>{genre}</p>
-                  ))}
-                </div>
-                <div className="dropdown-menu-col">
-                  {genres.slice(4).map((genre) => (
-                    <p>{genre}</p>
-                  ))}
-                </div>
-              </DropDown>
-            )}
-          </p>
-          <p>PROMOÇÃO</p>
-          <p>ENTREGAS</p>
-          <p>SOBRE</p>
-          <p>CONTATO</p>
-        </Menu>
-      </LowerHeader>
+      <LowerHeader hidden={!showLowerHeader}>{lowerMenuContianer}</LowerHeader>
     </header>
   );
 };
