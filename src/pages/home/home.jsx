@@ -8,8 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 const Home = () => {
   return (
     <>
-      <Header />
       <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
+      <Header />
       <Hero />
       <Footer />
     </>
