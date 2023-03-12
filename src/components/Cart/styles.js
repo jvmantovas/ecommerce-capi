@@ -19,11 +19,14 @@ export const CartWrapper = styled.section`
   h3 {
     padding: 2rem;
   }
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 export const CartTable = styled.table`
   width: 100%;
-  max-width: 90vw;
+  max-width: 100%;
   border-collapse: collapse;
   th,
   td {
@@ -38,6 +41,37 @@ export const CartTable = styled.table`
   .remove-td {
     width: 120px;
   }
+  .quantity {
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    th,
+    td {
+      font-size: 14px;
+      padding: 5px;
+    }
+    .remove-td {
+      max-width: 50px;
+    }
+    .remove-item {
+      padding: 5px 10px;
+      font-size: 10px;
+    }
+  }
+  @media (max-width: 360px) {
+    th,
+    td {
+      font-size: 10px;
+      padding: 5px;
+    }
+    .remove-td {
+      max-width: 50px;
+    }
+    .remove-item {
+      padding: 5px 10px;
+      font-size: 8px;
+    }
+  }
 `;
 
 export const CartButtonsWrapper = styled.div`
@@ -45,6 +79,7 @@ export const CartButtonsWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 90vw;
+  max-width: 100%;
 `;
 
 export const CartButton = styled.button`

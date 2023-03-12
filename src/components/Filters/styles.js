@@ -26,6 +26,8 @@ export const FilterSection = styled.div`
   margin-bottom: 2rem;
   @media (max-width: 768px) {
     margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -59,6 +61,8 @@ export const GenresList = styled.ul`
   color: #444444;
   @media (max-width: 768px) {
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin-right: 0;
     min-width: 80%;
   }
@@ -100,7 +104,8 @@ export const FilterCheckbox = styled.input`
     border-radius: 2px;
   }
   @media (max-width: 768px) {
-    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

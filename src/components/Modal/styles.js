@@ -82,32 +82,51 @@ export const Cover = styled.img`
 `;
 
 export const AlbumTitle = styled.h2`
+  font-family: "HarmoniaSansW01-Regular";
+  font-style: normal;
+  /* font-size: 18px; */
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: #000000;
+  padding-top: 0.25rem;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   margin: 1rem 0;
-  color: #000;
 `;
 
 export const MainGenre = styled.h3`
+  font-family: "HarmoniaSansW01-Regular";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  color: #444444;
   font-size: 1.2rem;
   text-align: center;
   margin: 0.5rem 0;
-  color: #000;
 `;
 
 export const SubGenre = styled.p`
+  font-family: "HarmoniaSansW01-Regular";
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  color: #444444;
   font-size: 1rem;
   text-align: center;
   margin: 0.5rem 0;
-  color: #000;
 `;
 
 export const OldPrice = styled.span`
+  font-family: "HarmoniaSansW01-Semibold";
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+  text-decoration-line: line-through;
+  color: #6b6b6b;
   font-size: 1.2rem;
-  text-decoration: line-through;
   margin: 0.5rem 0;
-  color: #000;
 `;
 
 export const PriceWrapper = styled.div`
@@ -119,15 +138,22 @@ export const PriceWrapper = styled.div`
 
 export const RecordType = styled.span`
   font-size: 1.2rem;
-  font-weight: bold;
   margin-right: 0.5rem;
   color: #444444;
+  font-family: "HarmoniaSansW01-Semibold";
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.4px;
 `;
 
 export const Price = styled.span`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #000;
+  font-family: "HarmoniaSansW01-Semibold";
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+  color: #ce2237;
+  font-size: 1.75rem;
 `;
 
 export const AddToCartButton = styled.button`
