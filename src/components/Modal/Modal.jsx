@@ -83,7 +83,7 @@ const Modal = ({ product, onClose }) => {
             <Price>R${product.price}</Price>
           </PriceWrapper>
           <AddToCartButton onClick={() => addToCart(product.id)}>
-            <img src="../../../public/assets/cart-vector.svg" alt="" />
+            <img src="/assets/cart-vector.svg" alt="" />
             <p>Adicionar ao carrinho</p>
           </AddToCartButton>
         </ModalContent>

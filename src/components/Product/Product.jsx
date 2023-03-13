@@ -84,7 +84,7 @@ const Product = ({ products }) => {
             <Price>R${product.price}</Price>
           </PriceWrapper>
           <AddToCartButton onClick={() => addToCart(product.id)}>
-            <img src="../../../public/assets/cart-vector.svg" alt="" />
+            <img src="/assets/cart-vector.svg" alt="" />
           </AddToCartButton>
         </Card>
       ))}
