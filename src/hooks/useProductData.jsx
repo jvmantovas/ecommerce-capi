@@ -12,9 +12,7 @@ export function useProductData() {
         setProducts(JSON.parse(cachedData));
       } else {
         try {
-          const response = await axios.get(
-            "http://localhost/ecommerce-capi/products.php"
-          );
+          const response = await axios.get("/api/products.php");
 
           const modifiedData = await Promise.all(
             response.data.map(async (product, index) => {

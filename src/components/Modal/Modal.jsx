@@ -38,15 +38,11 @@ const Modal = ({ product, onClose }) => {
         quantity: 1,
         token: token,
       };
-      const response = await axios.post(
-        "http://localhost/ecommerce-capi/add_to_cart.php",
-        productData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("/api/add_to_cart.php", productData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.status === 201 || response.status === 200) {
         toast.success(response.data.message);
       } else {

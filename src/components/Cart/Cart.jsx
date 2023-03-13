@@ -24,9 +24,7 @@ const Cart = () => {
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      const response = await axios.get(
-        `http://localhost/ecommerce-capi/cart_items.php?user_id=${userId}`
-      );
+      const response = await axios.get(`/api/cart_items.php?user_id=${userId}`);
       setCartItems(response.data);
     };
 
@@ -43,7 +41,7 @@ const Cart = () => {
       };
       console.log(deleteData);
       const response = await axios.delete(
-        "http://localhost/ecommerce-capi/remove_from_cart.php",
+        "/api/remove_from_cart.php",
         deleteData
       );
       if (response.data.status === "success") {
@@ -68,7 +66,7 @@ const Cart = () => {
 
     try {
       const response = await axios.delete(
-        "http://localhost/ecommerce-capi/remove_from_cart.php",
+        "/api/remove_from_cart.php",
         deleteData
       );
       if (response.data.status === "success") {

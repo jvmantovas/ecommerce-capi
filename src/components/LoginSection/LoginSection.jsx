@@ -51,10 +51,7 @@ const LoginSection = () => {
         password: data.password,
       };
 
-      const response = await axios.post(
-        "http://localhost/ecommerce-capi/insert.php",
-        sendData
-      );
+      const response = await axios.post("/api/insert.php", sendData);
 
       if (response.status === 200) {
         toast.success("Usuário cadastrado com sucesso!");
@@ -82,15 +79,11 @@ const LoginSection = () => {
         email: user.email,
         password: user.password,
       };
-      const response = await axios.post(
-        "http://localhost/ecommerce-capi/login.php",
-        userData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("/api/login.php", userData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.status === 200) {
         localStorage.setItem("userName", response.data.user.name);
         localStorage.setItem("userEmail", response.data.user.email);
