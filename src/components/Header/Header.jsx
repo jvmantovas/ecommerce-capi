@@ -78,11 +78,11 @@ const Header = () => {
 
   const logoContainer = isSmallScreen ? (
     <>
-      <img src="../../../public/CAPIVARARECORDS.svg" alt="" />
+      <img src="../../../public/assets/CAPIVARARECORDS.svg" alt="" />
     </>
   ) : (
     <>
-      <img src="../../../public/capi-logo.svg" alt="" />
+      <img src="../../../public/assets/capi-logo.svg" alt="" />
     </>
   );
 
